@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5832745-cffe7e98c478b96e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/767/format/webp">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5832745-61e2dcbbdd421a12.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/667/format/webp">
 <meta property="article:published_time" content="2023-01-07T16:44:12.000Z">
-<meta property="article:modified_time" content="2023-01-07T16:47:04.255Z">
+<meta property="article:modified_time" content="2023-01-07T17:00:43.548Z">
 <meta property="article:author" content="Coder4nlp">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="c:/work/个人博客/images/repository_name.PNG">
@@ -194,10 +194,17 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2023-01-08 00:44:12 / Modified: 00:47:04" itemprop="dateCreated datePublished" datetime="2023-01-08T00:44:12+08:00">2023-01-08</time>
+              <time title="Created: 2023-01-08 00:44:12 / Modified: 01:00:43" itemprop="dateCreated datePublished" datetime="2023-01-08T00:44:12+08:00">2023-01-08</time>
             </span>
 
           
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
 
         </div>
       </header>
@@ -393,14 +400,17 @@
 <p>更换next主题，在<code>hexo s</code>时警告，页面空白，使用<code>hexo clean</code>解决</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">WARN  No layout: index.html</span><br><span class="line">WARN  No layout: index.html</span><br><span class="line">WARN  No layout: index.html</span><br></pre></td></tr></table></figure>
 
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page tags</span><br></pre></td></tr></table></figure>
 
+<p>next主题配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo new page about</span><br><span class="line">hexo new page tags</span><br><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure>
 
-
-
-<h3 id="启用分类和标签页面"><a href="#启用分类和标签页面" class="headerlink" title="启用分类和标签页面"></a>启用分类和标签页面</h3><p>分类功能：执行 <code>hexo new page categories</code> ，然后修改生成的 <code>source/categories/index.md</code> </p>
-<h3 id="文章如何添加多个标签"><a href="#文章如何添加多个标签" class="headerlink" title="文章如何添加多个标签"></a>文章如何添加多个标签</h3><p>有两种多标签格式</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">tags: [a, b, c]</span><br><span class="line">或</span><br><span class="line">tags:</span><br><span class="line">  <span class="operator">-</span> a</span><br><span class="line">  <span class="operator">-</span> b</span><br><span class="line">  <span class="operator">-</span> c</span><br></pre></td></tr></table></figure>
-
+<ul>
+<li><p>tags：</p>
+</li>
+<li><p>```<br>title: 分类 #页面的头部显示<br>type: categories</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 启用分类和标签页面</span><br><span class="line"></span><br><span class="line">分类功能：执行 `hexo new page categories` ，然后修改生成的 `source/categories/index.md` </span><br><span class="line"></span><br><span class="line">### 文章如何添加多个标签</span><br><span class="line"></span><br><span class="line">有两种多标签格式</span><br><span class="line"></span><br><span class="line">```swift</span><br><span class="line">tags: [a, b, c]</span><br><span class="line">或</span><br><span class="line">tags:</span><br><span class="line">  - a</span><br><span class="line">  - b</span><br><span class="line">  - c</span><br></pre></td></tr></table></figure></li>
+</ul>
 <h3 id="显示部分文章内容"><a href="#显示部分文章内容" class="headerlink" title="显示部分文章内容"></a>显示部分文章内容</h3><p>如果在博客文章列表中，不想全文显示，可以增加 <code>&lt;!--more--&gt;</code>, 后面的内容就不会显示在列表。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--more--&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -547,7 +557,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo-GitHub-Pages-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2"><span class="nav-number">1.</span> <span class="nav-text">Hexo + GitHub Pages 搭建博客</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%90%AD%E5%BB%BA-Node-js-%E7%8E%AF%E5%A2%83"><span class="nav-number">1.1.</span> <span class="nav-text">1 搭建 Node.js 环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%90%AD%E5%BB%BA-Git-%E7%8E%AF%E5%A2%83"><span class="nav-number">1.2.</span> <span class="nav-text">2 搭建 Git 环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-GitHub-%E6%B3%A8%E5%86%8C%E5%92%8C%E9%85%8D%E7%BD%AE"><span class="nav-number">1.3.</span> <span class="nav-text">3 GitHub 注册和配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE-Hexo"><span class="nav-number">1.4.</span> <span class="nav-text">安装配置 Hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E8%81%94-Hexo-%E4%B8%8E-GitHub-Pages"><span class="nav-number">1.5.</span> <span class="nav-text">关联 Hexo 与 GitHub Pages</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GitHub-Pages-%E5%9C%B0%E5%9D%80%E8%A7%A3%E6%9E%90%E5%88%B0%E4%B8%AA%E4%BA%BA%E5%9F%9F%E5%90%8D"><span class="nav-number">1.6.</span> <span class="nav-text">GitHub Pages 地址解析到个人域名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-%E7%9A%84%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C"><span class="nav-number">1.7.</span> <span class="nav-text">Hexo 的常用操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%91%E8%A1%A8%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0"><span class="nav-number">1.7.1.</span> <span class="nav-text">发表一篇文章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%AE%9A%E4%B9%89%E9%A1%B5%E9%9D%A2"><span class="nav-number">1.7.2.</span> <span class="nav-text">新建一个自定义页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%94%B9%E4%B8%BB%E9%A2%98"><span class="nav-number">1.7.3.</span> <span class="nav-text">更改主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E7%94%A8%E5%88%86%E7%B1%BB%E5%92%8C%E6%A0%87%E7%AD%BE%E9%A1%B5%E9%9D%A2"><span class="nav-number">1.7.4.</span> <span class="nav-text">启用分类和标签页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E7%AB%A0%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0%E5%A4%9A%E4%B8%AA%E6%A0%87%E7%AD%BE"><span class="nav-number">1.7.5.</span> <span class="nav-text">文章如何添加多个标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA%E9%83%A8%E5%88%86%E6%96%87%E7%AB%A0%E5%86%85%E5%AE%B9"><span class="nav-number">1.7.6.</span> <span class="nav-text">显示部分文章内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E6%8F%92%E4%BB%B6"><span class="nav-number">1.7.7.</span> <span class="nav-text">添加插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0-404-%E9%A1%B5%E9%9D%A2"><span class="nav-number">1.7.8.</span> <span class="nav-text">添加 404 页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9APC%E5%90%8C%E6%AD%A5%E7%AE%A1%E7%90%86%E5%8D%9A%E5%AE%A2"><span class="nav-number">1.7.9.</span> <span class="nav-text">多PC同步管理博客</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81"><span class="nav-number">1.7.10.</span> <span class="nav-text">中文乱码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9D%9F%E8%AF%AD"><span class="nav-number">1.8.</span> <span class="nav-text">结束语</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">2.</span> <span class="nav-text">参考</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo-GitHub-Pages-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2"><span class="nav-number">1.</span> <span class="nav-text">Hexo + GitHub Pages 搭建博客</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%90%AD%E5%BB%BA-Node-js-%E7%8E%AF%E5%A2%83"><span class="nav-number">1.1.</span> <span class="nav-text">1 搭建 Node.js 环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%90%AD%E5%BB%BA-Git-%E7%8E%AF%E5%A2%83"><span class="nav-number">1.2.</span> <span class="nav-text">2 搭建 Git 环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-GitHub-%E6%B3%A8%E5%86%8C%E5%92%8C%E9%85%8D%E7%BD%AE"><span class="nav-number">1.3.</span> <span class="nav-text">3 GitHub 注册和配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE-Hexo"><span class="nav-number">1.4.</span> <span class="nav-text">安装配置 Hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E8%81%94-Hexo-%E4%B8%8E-GitHub-Pages"><span class="nav-number">1.5.</span> <span class="nav-text">关联 Hexo 与 GitHub Pages</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GitHub-Pages-%E5%9C%B0%E5%9D%80%E8%A7%A3%E6%9E%90%E5%88%B0%E4%B8%AA%E4%BA%BA%E5%9F%9F%E5%90%8D"><span class="nav-number">1.6.</span> <span class="nav-text">GitHub Pages 地址解析到个人域名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-%E7%9A%84%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C"><span class="nav-number">1.7.</span> <span class="nav-text">Hexo 的常用操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%91%E8%A1%A8%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0"><span class="nav-number">1.7.1.</span> <span class="nav-text">发表一篇文章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%AE%9A%E4%B9%89%E9%A1%B5%E9%9D%A2"><span class="nav-number">1.7.2.</span> <span class="nav-text">新建一个自定义页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%94%B9%E4%B8%BB%E9%A2%98"><span class="nav-number">1.7.3.</span> <span class="nav-text">更改主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA%E9%83%A8%E5%88%86%E6%96%87%E7%AB%A0%E5%86%85%E5%AE%B9"><span class="nav-number">1.7.4.</span> <span class="nav-text">显示部分文章内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E6%8F%92%E4%BB%B6"><span class="nav-number">1.7.5.</span> <span class="nav-text">添加插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0-404-%E9%A1%B5%E9%9D%A2"><span class="nav-number">1.7.6.</span> <span class="nav-text">添加 404 页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9APC%E5%90%8C%E6%AD%A5%E7%AE%A1%E7%90%86%E5%8D%9A%E5%AE%A2"><span class="nav-number">1.7.7.</span> <span class="nav-text">多PC同步管理博客</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81"><span class="nav-number">1.7.8.</span> <span class="nav-text">中文乱码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9D%9F%E8%AF%AD"><span class="nav-number">1.8.</span> <span class="nav-text">结束语</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">2.</span> <span class="nav-text">参考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -599,6 +609,26 @@
   </div>
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
 
 
