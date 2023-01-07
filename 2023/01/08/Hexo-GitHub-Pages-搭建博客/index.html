@@ -16,6 +16,8 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
@@ -31,7 +33,7 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5832745-cffe7e98c478b96e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/767/format/webp">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5832745-61e2dcbbdd421a12.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/667/format/webp">
 <meta property="article:published_time" content="2023-01-07T16:44:12.000Z">
-<meta property="article:modified_time" content="2023-01-07T17:46:43.607Z">
+<meta property="article:modified_time" content="2023-01-07T17:56:26.184Z">
 <meta property="article:author" content="Coder4nlp">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="c:/work/个人博客/images/repository_name.PNG">
@@ -214,10 +216,32 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2023-01-08 00:44:12 / Modified: 01:46:43" itemprop="dateCreated datePublished" datetime="2023-01-08T00:44:12+08:00">2023-01-08</time>
+      <time title="Created: 2023-01-08 00:44:12 / Modified: 01:56:26" itemprop="dateCreated datePublished" datetime="2023-01-08T00:44:12+08:00">2023-01-08</time>
     </span>
 
   
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>12k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>11 mins.</span>
+    </span>
 </div>
 
         </div>
@@ -441,6 +465,10 @@
 <p>$ cd hexo-site<br>$ npm install hexo-theme-next</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Or you can clone the entire repository:</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>$ cd hexo-site<br>$ git clone <a target="_blank" rel="noopener" href="https://github.com/next-theme/hexo-theme-next">https://github.com/next-theme/hexo-theme-next</a> themes&#x2F;next</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">与插件配合，搜索正常</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>npm install hexo-generator-searchdb –save # 安装插件，用于生成博客索引数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 添加字数统计及阅读时长</span><br><span class="line"></span><br><span class="line">安装hexo-symbols-count-time</span><br><span class="line"></span><br><span class="line">在博客文件夹里执行命令：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>npm install hexo-symbols-count-time –save</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 启用分类和标签页面</span><br><span class="line"></span><br><span class="line">分类功能：执行 `hexo new page categories` ，然后修改生成的 `source/categories/index.md` </span><br><span class="line"></span><br><span class="line">### 文章如何添加多个标签</span><br><span class="line"></span><br><span class="line">有两种多标签格式</span><br><span class="line"></span><br><span class="line">```swift</span><br><span class="line">tags: [a, b, c]</span><br><span class="line">或</span><br><span class="line">tags:</span><br><span class="line">  - a</span><br><span class="line">  - b</span><br><span class="line">  - c</span><br></pre></td></tr></table></figure></li>
 </ul>
 <h3 id="显示部分文章内容"><a href="#显示部分文章内容" class="headerlink" title="显示部分文章内容"></a>显示部分文章内容</h3><p>如果在博客文章列表中，不想全文显示，可以增加 <code>&lt;!--more--&gt;</code>, 后面的内容就不会显示在列表。</p>
@@ -554,6 +582,38 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Coder4nlp</span>
 </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="Word count total">12k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">11 mins.</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
 
@@ -587,8 +647,10 @@
 
 
 
+  <script src="/js/third-party/pace.js"></script>
 
   
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
