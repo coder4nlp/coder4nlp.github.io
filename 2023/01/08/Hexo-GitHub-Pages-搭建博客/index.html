@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.4.2">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -13,14 +13,13 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
-  </script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-  <meta name="description" content="Hexo + GitHub Pages 搭建博客基本流程  搭建 Node.js 环境  搭建 Git 环境">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Hexo + GitHub Pages 搭建博客基本流程  搭建 Node.js 环境  搭建 Git 环境">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo &amp; GitHub Pages 搭建博客">
 <meta property="og:url" content="http://example.com/2023/01/08/Hexo-GitHub-Pages-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/index.html">
@@ -32,25 +31,20 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5832745-cffe7e98c478b96e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/767/format/webp">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5832745-61e2dcbbdd421a12.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/667/format/webp">
 <meta property="article:published_time" content="2023-01-07T16:44:12.000Z">
-<meta property="article:modified_time" content="2023-01-07T17:26:51.067Z">
+<meta property="article:modified_time" content="2023-01-07T17:39:41.810Z">
 <meta property="article:author" content="Coder4nlp">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="c:/work/个人博客/images/repository_name.PNG">
 
+
 <link rel="canonical" href="http://example.com/2023/01/08/Hexo-GitHub-Pages-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'en'
-  };
-</script>
 
-  <title>Hexo & GitHub Pages 搭建博客 | Coder4nlp's Blog</title>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2023/01/08/Hexo-GitHub-Pages-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/","path":"2023/01/08/Hexo-GitHub-Pages-搭建博客/","title":"Hexo & GitHub Pages 搭建博客"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Hexo & GitHub Pages 搭建博客 | Coder4nlp's Blog</title>
   
 
 
@@ -58,56 +52,38 @@
 
 
 
+
+
   <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
   <div class="site-meta">
 
     <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Coder4nlp's Blog</h1>
-      <span class="logo-line-after"><i></i></span>
+      <i class="logo-line"></i>
+      <p class="site-title">Coder4nlp's Blog</p>
+      <i class="logo-line"></i>
     </a>
   </div>
 
   <div class="site-nav-right">
-    <div class="toggle popup-trigger">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
         <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
@@ -115,34 +91,8 @@
 
 
 
-
 <nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
-
-  </li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -153,86 +103,122 @@
 
 
   <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
+    <div class="popup search-popup"><div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
            placeholder="Searching..." spellcheck="false"
            type="search" class="search-input">
   </div>
-  <span class="popup-btn-close">
+  <span class="popup-btn-close" role="button">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
   </div>
 </div>
 
     </div>
   </div>
 
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo-GitHub-Pages-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2"><span class="nav-number">1.</span> <span class="nav-text">Hexo + GitHub Pages 搭建博客</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%90%AD%E5%BB%BA-Node-js-%E7%8E%AF%E5%A2%83"><span class="nav-number">1.1.</span> <span class="nav-text">1 搭建 Node.js 环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%90%AD%E5%BB%BA-Git-%E7%8E%AF%E5%A2%83"><span class="nav-number">1.2.</span> <span class="nav-text">2 搭建 Git 环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-GitHub-%E6%B3%A8%E5%86%8C%E5%92%8C%E9%85%8D%E7%BD%AE"><span class="nav-number">1.3.</span> <span class="nav-text">3 GitHub 注册和配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE-Hexo"><span class="nav-number">1.4.</span> <span class="nav-text">安装配置 Hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E8%81%94-Hexo-%E4%B8%8E-GitHub-Pages"><span class="nav-number">1.5.</span> <span class="nav-text">关联 Hexo 与 GitHub Pages</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GitHub-Pages-%E5%9C%B0%E5%9D%80%E8%A7%A3%E6%9E%90%E5%88%B0%E4%B8%AA%E4%BA%BA%E5%9F%9F%E5%90%8D"><span class="nav-number">1.6.</span> <span class="nav-text">GitHub Pages 地址解析到个人域名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-%E7%9A%84%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C"><span class="nav-number">1.7.</span> <span class="nav-text">Hexo 的常用操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%91%E8%A1%A8%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0"><span class="nav-number">1.7.1.</span> <span class="nav-text">发表一篇文章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%AE%9A%E4%B9%89%E9%A1%B5%E9%9D%A2"><span class="nav-number">1.7.2.</span> <span class="nav-text">新建一个自定义页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%94%B9%E4%B8%BB%E9%A2%98"><span class="nav-number">1.7.3.</span> <span class="nav-text">更改主题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#if-auto-trigger-search-by-changing-input"><span class="nav-number">2.</span> <span class="nav-text">if auto, trigger search by changing input</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#if-manual-trigger-search-by-pressing-enter-key-or-search-button"><span class="nav-number">3.</span> <span class="nav-text">if manual, trigger search by pressing enter key or search button</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#show-top-n-results-per-article-show-all-results-by-setting-to-1"><span class="nav-number">4.</span> <span class="nav-text">show top n results per article, show all results by setting to -1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA%E9%83%A8%E5%88%86%E6%96%87%E7%AB%A0%E5%86%85%E5%AE%B9"><span class="nav-number">4.0.1.</span> <span class="nav-text">显示部分文章内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E6%8F%92%E4%BB%B6"><span class="nav-number">4.0.2.</span> <span class="nav-text">添加插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0-404-%E9%A1%B5%E9%9D%A2"><span class="nav-number">4.0.3.</span> <span class="nav-text">添加 404 页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9APC%E5%90%8C%E6%AD%A5%E7%AE%A1%E7%90%86%E5%8D%9A%E5%AE%A2"><span class="nav-number">4.0.4.</span> <span class="nav-text">多PC同步管理博客</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81"><span class="nav-number">4.0.5.</span> <span class="nav-text">中文乱码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9D%9F%E8%AF%AD"><span class="nav-number">4.1.</span> <span class="nav-text">结束语</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Coder4nlp</p>
+  <div class="site-description" itemprop="description"></div>
 </div>
-    </header>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
 
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
+  </aside>
 
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
+    </div>
 
-          <div class="content post posts-expand">
-            
+    <div class="main-inner post posts-expand">
 
-    
+
+  
+
+
+<div class="post-block">
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2023/01/08/Hexo-GitHub-Pages-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Coder4nlp">
-      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Coder4nlp's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Hexo & GitHub Pages 搭建博客 | Coder4nlp's Blog">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           Hexo & GitHub Pages 搭建博客
         </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
 
-              <time title="Created: 2023-01-08 00:44:12 / Modified: 01:26:51" itemprop="dateCreated datePublished" datetime="2023-01-08T00:44:12+08:00">2023-01-08</time>
-            </span>
+      <time title="Created: 2023-01-08 00:44:12 / Modified: 01:39:41" itemprop="dateCreated datePublished" datetime="2023-01-08T00:44:12+08:00">2023-01-08</time>
+    </span>
 
-          
-            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
+  
+</div>
 
         </div>
       </header>
@@ -241,8 +227,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
         <h1 id="Hexo-GitHub-Pages-搭建博客"><a href="#Hexo-GitHub-Pages-搭建博客" class="headerlink" title="Hexo + GitHub Pages 搭建博客"></a>Hexo + GitHub Pages 搭建博客</h1><p><strong>基本流程</strong></p>
 <ul>
 <li><p>搭建 Node.js 环境</p>
@@ -337,7 +321,7 @@
 
 <p>如果是下面的反馈：</p>
 <blockquote>
-<p>The authenticity of host ‘github.com (207.97.227.239)’ can’t be established.<br>RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.<br>Are you sure you want to continue connecting (yes/no)?</p>
+<p>The authenticity of host ‘github.com (207.97.227.239)’ can’t be established.<br>RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.<br>Are you sure you want to continue connecting (yes&#x2F;no)?</p>
 </blockquote>
 <p>不要紧张，输入yes就好，然后会看到：</p>
 <figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hi coder4nlp! You<span class="symbol">&#x27;ve</span> successfully authenticated, but GitHub does not provide shell access.</span><br></pre></td></tr></table></figure>
@@ -438,7 +422,7 @@
 <ul>
 <li><p>tags：</p>
 </li>
-<li><p>```<br>title: 分类 #页面的头部显示<br>type: categories</p>
+<li><p>&#96;&#96;&#96;<br>title: 分类 #页面的头部显示<br>type: categories</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- categories：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>title: 标签 #页面的头部显示<br>type: tags</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 添加站点访问人数和总访问量</span><br><span class="line"></span><br><span class="line">修改next主题配置文件，搜索**busuanzi_count**</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -453,7 +437,11 @@
 <h1 id="show-top-n-results-per-article-show-all-results-by-setting-to-1"><a href="#show-top-n-results-per-article-show-all-results-by-setting-to-1" class="headerlink" title="show top n results per article, show all results by setting to -1"></a>show top n results per article, show all results by setting to -1</h1><p>top_n_per_article: 1</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">但是！！！！！！根据网络上的教程，我的搜索功能一部署到服务器就出现了搜索图标不正常显示，然后费劲九牛二虎之力才发现。那些教程只适用于旧版的hexo。</span><br><span class="line"></span><br><span class="line">![](https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy56enp5dWFuLmNuLzIwMjAwNzA1MTYzODU4LmpwZw?x-oss-process=image/format,png)</span><br><span class="line"></span><br><span class="line">安装插件</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>npm install hexo-generator-searchdb –save # 安装插件，用于生成博客索引数据</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 启用分类和标签页面</span><br><span class="line"></span><br><span class="line">分类功能：执行 `hexo new page categories` ，然后修改生成的 `source/categories/index.md` </span><br><span class="line"></span><br><span class="line">### 文章如何添加多个标签</span><br><span class="line"></span><br><span class="line">有两种多标签格式</span><br><span class="line"></span><br><span class="line">```swift</span><br><span class="line">tags: [a, b, c]</span><br><span class="line">或</span><br><span class="line">tags:</span><br><span class="line">  - a</span><br><span class="line">  - b</span><br><span class="line">  - c</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">NexT 一共有三个不同的仓库：</span><br><span class="line"></span><br><span class="line">| 版本            | 年份        | 仓库                                          |</span><br><span class="line">| --------------- | ----------- | --------------------------------------------- |</span><br><span class="line">| v5.1.4 或更低   | 2014 ~ 2017 | https://github.com/iissnan/hexo-theme-next    |</span><br><span class="line">| v6.0.0 ~ v7.8.0 | 2018 ~ 2019 | https://github.com/theme-next/hexo-theme-next |</span><br><span class="line">| v8.0.0 或更高   | 2020        | https://github.com/next-theme/hexo-theme-next |</span><br><span class="line"></span><br><span class="line">If you&#x27;re using **Hexo 5.0** or later, the simplest way to install is through npm:</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>$ cd hexo-site<br>$ npm install hexo-theme-next</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Or you can clone the entire repository:</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>$ cd hexo-site<br>$ git clone <a target="_blank" rel="noopener" href="https://github.com/next-theme/hexo-theme-next">https://github.com/next-theme/hexo-theme-next</a> themes&#x2F;next</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 启用分类和标签页面</span><br><span class="line"></span><br><span class="line">分类功能：执行 `hexo new page categories` ，然后修改生成的 `source/categories/index.md` </span><br><span class="line"></span><br><span class="line">### 文章如何添加多个标签</span><br><span class="line"></span><br><span class="line">有两种多标签格式</span><br><span class="line"></span><br><span class="line">```swift</span><br><span class="line">tags: [a, b, c]</span><br><span class="line">或</span><br><span class="line">tags:</span><br><span class="line">  - a</span><br><span class="line">  - b</span><br><span class="line">  - c</span><br></pre></td></tr></table></figure></li>
 </ul>
 <h3 id="显示部分文章内容"><a href="#显示部分文章内容" class="headerlink" title="显示部分文章内容"></a>显示部分文章内容</h3><p>如果在博客文章列表中，不想全文显示，可以增加 <code>&lt;!--more--&gt;</code>, 后面的内容就不会显示在列表。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--more--&gt;</span></span><br></pre></td></tr></table></figure>
@@ -480,7 +468,7 @@
 <ol>
 <li>A电脑备份博客内容到github</li>
 </ol>
-<p>配置.gitignore文件。进入博客目录文件夹下，找到此文件，用sublime text 打开，在最后增加两行内容/.deploy_git和/public</p>
+<p>配置.gitignore文件。进入博客目录文件夹下，找到此文件，用sublime text 打开，在最后增加两行内容&#x2F;.deploy_git和&#x2F;public</p>
 <ol>
 <li>初始化仓库。</li>
 </ol>
@@ -538,110 +526,27 @@
     
     
 
-      <footer class="post-footer">
+    <footer class="post-footer">
 
         
 
-
-        
-      </footer>
-    
+    </footer>
   </article>
-  
-  
-  
-
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo-GitHub-Pages-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2"><span class="nav-number">1.</span> <span class="nav-text">Hexo + GitHub Pages 搭建博客</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%90%AD%E5%BB%BA-Node-js-%E7%8E%AF%E5%A2%83"><span class="nav-number">1.1.</span> <span class="nav-text">1 搭建 Node.js 环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%90%AD%E5%BB%BA-Git-%E7%8E%AF%E5%A2%83"><span class="nav-number">1.2.</span> <span class="nav-text">2 搭建 Git 环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-GitHub-%E6%B3%A8%E5%86%8C%E5%92%8C%E9%85%8D%E7%BD%AE"><span class="nav-number">1.3.</span> <span class="nav-text">3 GitHub 注册和配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE-Hexo"><span class="nav-number">1.4.</span> <span class="nav-text">安装配置 Hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E8%81%94-Hexo-%E4%B8%8E-GitHub-Pages"><span class="nav-number">1.5.</span> <span class="nav-text">关联 Hexo 与 GitHub Pages</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GitHub-Pages-%E5%9C%B0%E5%9D%80%E8%A7%A3%E6%9E%90%E5%88%B0%E4%B8%AA%E4%BA%BA%E5%9F%9F%E5%90%8D"><span class="nav-number">1.6.</span> <span class="nav-text">GitHub Pages 地址解析到个人域名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-%E7%9A%84%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C"><span class="nav-number">1.7.</span> <span class="nav-text">Hexo 的常用操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%91%E8%A1%A8%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0"><span class="nav-number">1.7.1.</span> <span class="nav-text">发表一篇文章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%AE%9A%E4%B9%89%E9%A1%B5%E9%9D%A2"><span class="nav-number">1.7.2.</span> <span class="nav-text">新建一个自定义页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%94%B9%E4%B8%BB%E9%A2%98"><span class="nav-number">1.7.3.</span> <span class="nav-text">更改主题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#if-auto-trigger-search-by-changing-input"><span class="nav-number">2.</span> <span class="nav-text">if auto, trigger search by changing input</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#if-manual-trigger-search-by-pressing-enter-key-or-search-button"><span class="nav-number">3.</span> <span class="nav-text">if manual, trigger search by pressing enter key or search button</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#show-top-n-results-per-article-show-all-results-by-setting-to-1"><span class="nav-number">4.</span> <span class="nav-text">show top n results per article, show all results by setting to -1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA%E9%83%A8%E5%88%86%E6%96%87%E7%AB%A0%E5%86%85%E5%AE%B9"><span class="nav-number">4.0.1.</span> <span class="nav-text">显示部分文章内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E6%8F%92%E4%BB%B6"><span class="nav-number">4.0.2.</span> <span class="nav-text">添加插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0-404-%E9%A1%B5%E9%9D%A2"><span class="nav-number">4.0.3.</span> <span class="nav-text">添加 404 页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9APC%E5%90%8C%E6%AD%A5%E7%AE%A1%E7%90%86%E5%8D%9A%E5%AE%A2"><span class="nav-number">4.0.4.</span> <span class="nav-text">多PC同步管理博客</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81"><span class="nav-number">4.0.5.</span> <span class="nav-text">中文乱码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9D%9F%E8%AF%AD"><span class="nav-number">4.1.</span> <span class="nav-text">结束语</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">Coder4nlp</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">1</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-  </nav>
 </div>
 
 
 
-      </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
 
 
-      </div>
-    </main>
 
-    <footer class="footer">
-      <div class="footer-inner">
-        
+</div>
+  </main>
 
-        
+  <footer class="footer">
+    <div class="footer-inner">
+
 
 <div class="copyright">
-  
   &copy; 
   <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
@@ -649,56 +554,36 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Coder4nlp</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
 
-        
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="Total Visitors">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="Total Views">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
-</div>
+    </div>
+  </footer>
 
-
-
-
-
-
-
-
-      </div>
-    </footer>
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
   </div>
 
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
-<script src="/js/utils.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
 
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/muse.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
 
 
 
@@ -708,24 +593,6 @@
 
 
 
-  
-<script src="/js/local-search.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
 
 </body>
 </html>
