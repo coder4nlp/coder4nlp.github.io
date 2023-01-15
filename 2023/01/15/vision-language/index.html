@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.lug.ustc.edu.cn/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="由Aishwarya Agrawal (DeepMind，蒙特利尔大学，Mila)， Damien Teney (Idiap研究所)和Aida Nematzadeh (DeepMind)编写的ACL 2022教程。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vision-Language Pretraining &amp;#58 Current Trends and the Future">
+<meta property="og:url" content="http://example.com/2023/01/15/vision-language/index.html">
+<meta property="og:site_name" content="Coder4nlp&#39;s Blog">
+<meta property="og:description" content="由Aishwarya Agrawal (DeepMind，蒙特利尔大学，Mila)， Damien Teney (Idiap研究所)和Aida Nematzadeh (DeepMind)编写的ACL 2022教程。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2023/01/15/vision-language/image1.PNG">
+<meta property="og:image" content="http://example.com/2023/01/15/vision-language/image2.PNG">
+<meta property="og:image" content="http://example.com/2023/01/15/vision-language/image3.PNG">
+<meta property="og:image" content="http://example.com/2023/01/15/vision-language/image4.PNG">
+<meta property="og:image" content="http://example.com/2023/01/15/vision-language/image5.PNG">
+<meta property="og:image" content="http://example.com/2023/01/15/vision-language/work/个人博客/blog/source/_posts/vision-language/image6.PNG">
+<meta property="og:image" content="http://example.com/2023/01/15/vision-language/work/个人博客/blog/source/_posts/vision-language/image7.PNG">
+<meta property="og:image" content="http://example.com/2023/01/15/vision-language/img8.PNG">
+<meta property="og:image" content="http://example.com/2023/01/15/vision-language/img9.PNG">
+<meta property="og:image" content="http://example.com/2023/01/15/vision-language/img10.PNG">
+<meta property="og:image" content="http://example.com/2023/01/15/vision-language/img11.PNG">
+<meta property="og:image" content="http://example.com/2023/01/15/vision-language/img12.PNG">
+<meta property="og:image" content="http://example.com/2023/01/15/vision-language/img13.PNG">
+<meta property="og:image" content="http://example.com/2023/01/15/vision-language/img14.PNG">
+<meta property="article:published_time" content="2023-01-15T13:27:17.000Z">
+<meta property="article:modified_time" content="2023-01-15T15:05:16.597Z">
+<meta property="article:author" content="Coder4nlp">
+<meta property="article:tag" content="NLP">
+<meta property="article:tag" content="CV">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/01/15/vision-language/image1.PNG">
+
+
+<link rel="canonical" href="http://example.com/2023/01/15/vision-language/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2023/01/15/vision-language/","path":"2023/01/15/vision-language/","title":"Vision-Language Pretraining &#58 Current Trends and the Future"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Vision-Language Pretraining &#58 Current Trends and the Future | Coder4nlp's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Coder4nlp's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-following"><a href="/following/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>following</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%99%E7%A8%8B%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">教程类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%97%E4%BC%97"><span class="nav-number">2.</span> <span class="nav-text">受众</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vision-Language-landscape-before-the-Pretraining-Era"><span class="nav-number"></span> <span class="nav-text">Vision-Language landscape before the Pretraining Era</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%A7%E7%BA%B2"><span class="nav-number">1.</span> <span class="nav-text">大纲</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Common-VL-tasks"><span class="nav-number">2.</span> <span class="nav-text">Common VL tasks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%BB%E5%8A%A1%E7%89%B9%E5%AE%9A%E7%9A%84%E6%95%B0%E6%8D%AE%E5%92%8C%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.</span> <span class="nav-text">任务特定的数据和模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#VL-%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-number">3.1.</span> <span class="nav-text">VL 数据集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%BB%E5%8A%A11%EF%BC%9A%E5%9B%BE%E5%83%8F%E6%8F%8F%E8%BF%B0%EF%BC%88Image-Captioning%EF%BC%89"><span class="nav-number">3.2.</span> <span class="nav-text">任务1：图像描述（Image Captioning）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Neural-Image-Caption-NIC-CVPR-2015"><span class="nav-number">3.3.</span> <span class="nav-text">Neural Image Caption (NIC) (CVPR 2015)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Coder4nlp</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/01/15/vision-language/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Coder4nlp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Coder4nlp's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Vision-Language Pretraining &#58 Current Trends and the Future | Coder4nlp's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Vision-Language Pretraining &#58 Current Trends and the Future
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-01-15 21:27:17 / Modified: 23:05:16" itemprop="dateCreated datePublished" datetime="2023-01-15T21:27:17+08:00">2023-01-15</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>由<a target="_blank" rel="noopener" href="https://www.iro.umontreal.ca/~agrawal/">Aishwarya Agrawal</a> (DeepMind，蒙特利尔大学，Mila)， <a target="_blank" rel="noopener" href="http://www.damienteney.info/">Damien Teney</a> (Idiap研究所)和<a target="_blank" rel="noopener" href="http://www.aidanematzadeh.me/">Aida Nematzadeh</a> (DeepMind)编写的ACL 2022教程。</p>
+<span id="more"></span>
+
+<p>幻灯片：</p>
+<p>• Part 1: <a target="_blank" rel="noopener" href="https://drive.google.com/file/d/1e0oLeQ2QrGcyP5OdINKhVDAjrCxtIIPV/view?usp=sharing">Vision-language landscape before the pretraining era</a>.<br>• Part 2: <a target="_blank" rel="noopener" href="https://vlp-tutorial-acl2022.github.io/part2_pretraining_models_aida.pdf">Modern vision-language pretraining</a>.<br>• Part 3: <a target="_blank" rel="noopener" href="https://vlp-tutorial-acl2022.github.io/Part3_BeyondStatisticalLearning_Teney.pdf">Beyond statistical learning</a>.</p>
+<p>本教程的目标是概述解决多模态问题所需的要素，特别是视觉和语言。我们还将讨论这一领域的一些悬而未决的问题和有前景的未来方向。</p>
+<p>在过去的几年里，人们对构建多模态(视觉-语言)模型越来越感兴趣，这种模型是在更大但更嘈杂的数据集上预训练的，其中两种模态(例如，图像和文本)彼此不精确地对应(例如，ViLBERT和CLIP)。给定一个任务(例如视觉问题回答)，这些模型通常会在特定于任务的监督数据集上进行微调。除了更大的预训练数据集外，transformer架构和应用于两种模态的自注意力是最近的预训练模型在下游任务中令人印象深刻的表现的原因。这种方法很有吸引力，原因有几个：首先，预训练数据集通常是从网络自动爬取的，提供了可以忽略不计的收集成本的庞大数据集。其次，我们可以训练大模型一次，并在各种任务中复用它们。最后，这些预训练方法的性能优于或与之前的特定任务模型相当。一个有趣的问题是，除了良好的任务表现外，这些预训练的模型是否能够更好地捕捉两种模态之间的对齐。在本教程中，我们关注最近的视觉语言预训练范式。我们的目标是在多模态预训练领域之前，首先提供图像语言数据集、基准和建模创新的背景。接下来，我们将讨论用于视觉-语言预训练的不同类型模型，重点介绍它们的优缺点。最后，我们讨论了通过统计学习进行视觉-语言预训练的局限性，以及因果建模等替代方法的必要性。</p>
+<h2 id="教程类型"><a href="#教程类型" class="headerlink" title="教程类型"></a>教程类型</h2><p>这是一个前沿教程，重点讨论视觉语言预训练的新趋势：是否最新的模型导致更好的表示，以及它们如何有助于下游任务。我们计划主要讨论2018年及之后的最新论文，但也将包括2018年之前在当前视觉语言范式中发挥关键作用的有影响力的论文。</p>
+<h2 id="受众"><a href="#受众" class="headerlink" title="受众"></a>受众</h2><p>我们希望目标受众是对视觉与语言交叉感兴趣的研究者，如语言基础或基础交流研究者。本教程也对初中生谁开始他们的职业生涯感兴趣。熟悉最近的架构(如变压器)是有用的，但不是参加教程所必需的。</p>
+<h1 id="Vision-Language-landscape-before-the-Pretraining-Era"><a href="#Vision-Language-landscape-before-the-Pretraining-Era" class="headerlink" title="Vision-Language landscape before the Pretraining Era"></a>Vision-Language landscape before the Pretraining Era</h1><h2 id="大纲"><a href="#大纲" class="headerlink" title="大纲"></a>大纲</h2><ul>
+<li>Common VL tasks</li>
+<li>Task specific datasets and models</li>
+<li>What did the community gain?</li>
+<li>Open problems and avenues for future research</li>
+</ul>
+<h2 id="Common-VL-tasks"><a href="#Common-VL-tasks" class="headerlink" title="Common VL tasks"></a>Common VL tasks</h2><p>（1）图像检索</p>
+<p>● High level similarity<br>● Easy evaluation (recall@K)</p>
+<p><img src="/2023/01/15/vision-language/image1.PNG"></p>
+<p>(2) Grounding Referring Expressions</p>
+<p><img src="/2023/01/15/vision-language/image2.PNG"></p>
+<p>● Spatial localization<br>● Finer grained grounding<br>● Easy evaluation (precision@1)</p>
+<p>(3) Image Captioning</p>
+<p>● Language generation (in addition to visual recognition)<br>● Difficult automatic evaluation (BLEU, CIDEr)</p>
+<p><img src="/2023/01/15/vision-language/image3.PNG"></p>
+<p>(4) Visual Question Answering</p>
+<p>● Elicit specific information from images<br>● Relatively easier evaluation (accuracy using string matching)</p>
+<p><img src="/2023/01/15/vision-language/image4.PNG"></p>
+<p>(4 ) Visual Dialog</p>
+<p><img src="/2023/01/15/vision-language/image5.PNG"></p>
+<ul>
+<li>Context modelling in addition to grounding </li>
+<li>Difficult to evaluate free form answers (retrieval metric used)</li>
+</ul>
+<p>Why vision and language?</p>
+<ul>
+<li>Intuitive:<ul>
+<li>Humans learn in multimodal settings</li>
+</ul>
+</li>
+<li>Applications:<ul>
+<li>Aid to visually impaired users</li>
+<li>Online shopping and organizing photos</li>
+<li>Grounded virtual assistants</li>
+</ul>
+</li>
+<li>Scientific:<ul>
+<li>Visual recognition</li>
+<li>Language understanding</li>
+<li>Grounding language into vision</li>
+<li>Compositional reasoning</li>
+<li>Commonsense reasoning</li>
+</ul>
+</li>
+</ul>
+<h2 id="任务特定的数据和模型"><a href="#任务特定的数据和模型" class="headerlink" title="任务特定的数据和模型"></a>任务特定的数据和模型</h2><p>（1）Basic skeleton of most VL models (Image Retrieval)</p>
+<img src="/2023/01/15/vision-language/work\个人博客\blog\source\_posts\vision-language\image6.PNG" style="zoom: 67%;">
+
+<p>(2)Basic skeleton of most VL models (Grounding Referring Expressions)</p>
+<img src="/2023/01/15/vision-language/work\个人博客\blog\source\_posts\vision-language\image7.PNG" style="zoom:67%;">
+
+<p>(3) Basic skeleton of most VL models (VQA)</p>
+<img src="/2023/01/15/vision-language/img8.PNG" style="zoom:67%;">
+
+<p>(4) Basic skeleton of most VL models (Image Captioning)</p>
+<p><img src="/2023/01/15/vision-language/img9.PNG"></p>
+<p>(5) Basic skeleton of most VL models (Visual Dialog)</p>
+<img src="/2023/01/15/vision-language/img10.PNG" style="zoom:67%;">
+
+<h3 id="VL-数据集"><a href="#VL-数据集" class="headerlink" title="VL 数据集"></a>VL 数据集</h3><ul>
+<li><p>Image Retrieval: <a target="_blank" rel="noopener" href="https://shannon.cs.illinois.edu/DenotationGraph/">Flickr</a><em>,</em> <a target="_blank" rel="noopener" href="https://cocodataset.org/#download">COCO</a></p>
+</li>
+<li><p>Grounding Referring Expression: <a target="_blank" rel="noopener" href="https://github.com/lichengunc/refer">RefCOCO</a>，<a target="_blank" rel="noopener" href="https://ai.stanford.edu/~yukez/visual7w/">Visual7W</a></p>
+</li>
+<li><p>Image Captioning: <em><a target="_blank" rel="noopener" href="https://cocodataset.org/#download">COCO</a></em></p>
+</li>
+<li><p><em>Visual Question Answering:</em> <em><a target="_blank" rel="noopener" href="https://visualqa.org/">VQA v1</a>，</em> *<a target="_blank" rel="noopener" href="https://visualqa.org/">VQA v2</a>*， <em><a target="_blank" rel="noopener" href="https://visualgenome.org/">Visual Genome</a></em>, <em><a target="_blank" rel="noopener" href="https://cs.stanford.edu/people/dorarad/gqa/index.html">GQA</a></em></p>
+</li>
+<li><p>Visual Dialog:<em><a target="_blank" rel="noopener" href="https://visualdialog.org/">Visual Dialog</a>，</em> <em><a target="_blank" rel="noopener" href="https://github.com/GuessWhatGame/guesswhat">GuessWhat?!</a></em></p>
+</li>
+</ul>
+<h3 id="任务1：图像描述（Image-Captioning）"><a href="#任务1：图像描述（Image-Captioning）" class="headerlink" title="任务1：图像描述（Image Captioning）"></a>任务1：图像描述（Image Captioning）</h3><p>Captioning datasets：COCO [Lin et al., 2014]</p>
+<p><img src="/2023/01/15/vision-language/img11.PNG"></p>
+<p>COCO的 全称是Common Objects in COntext，是微软团队提供的一个可以用来进行图像识别的数据集。MS COCO数据集中的图像分为训练、验证和测试集。</p>
+<ul>
+<li>120k训练集+验证集[vs 1k（Pascal）,31k(Flikr)]</li>
+<li>图像包括91类目标，2.5M的标注样例</li>
+<li>图像描述任务的标注benchmark</li>
+</ul>
+<p>评价指标</p>
+<ul>
+<li>自动评估<ul>
+<li>基于n-gram重叠的度量（BLEU, Rouge, METEOR, CIDEr [Chen et al., 2015]）</li>
+<li>基于场景图的度量（SPICE [Anderson et al., 2016]）</li>
+</ul>
+</li>
+<li>人工评估</li>
+</ul>
+<h3 id="Neural-Image-Caption-NIC-CVPR-2015"><a href="#Neural-Image-Caption-NIC-CVPR-2015" class="headerlink" title="Neural Image Caption (NIC) (CVPR 2015)"></a><strong>Neural Image Caption (NIC) (CVPR 2015)</strong></h3><p>论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1411.4555">Show and Tell: A Neural Image Caption Generator</a></p>
+<p>NIC，我们的模型，是基于端到端的神经网络，由视觉CNN和语言生成RNN组成。它从输入图像中生成完整的自然语言句子，如下图的例子所示</p>
+<img src="/2023/01/15/vision-language/img12.PNG" style="zoom:67%;">
+
+<p>模型结构：LSTM模型结合CNN图像嵌入器和词嵌入。LSTM单元之间展开的连接显示为蓝色，它们对应循环连接。所有LSTM单元共享相同的参数。</p>
+<img src="/2023/01/15/vision-language/img13.PNG" style="zoom:67%;">
+
+<p>这些是模型产生的标题，你可以看到，它基本上正确地获得了场景的要点，但当涉及到具体的细节时，它可能不是很准确。</p>
+<p><img src="/2023/01/15/vision-language/img14.PNG"></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://aclanthology.org/2022.acl-tutorials.7.pdf">Vision-Language Pretraining: Current Trends and the Future</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/NLP/" rel="tag"># NLP</a>
+              <a href="/tags/CV/" rel="tag"># CV</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/01/10/Hugging-Face%E7%9A%84Datasets-%E5%BA%93/" rel="prev" title="Hugging Face的Datasets 库">
+                  <i class="fa fa-chevron-left"></i> Hugging Face的Datasets 库
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Coder4nlp</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
