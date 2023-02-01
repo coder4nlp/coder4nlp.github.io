@@ -210,7 +210,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2023-02-01 00:45:20 / Modified: 00:48:05" itemprop="dateCreated datePublished" datetime="2023-02-01T00:45:20+08:00">2023-02-01</time>
+      <time title="Created: 2023-02-01 00:45:20 / Modified: 12:16:32" itemprop="dateCreated datePublished" datetime="2023-02-01T00:45:20+08:00">2023-02-01</time>
     </span>
 
   
@@ -224,95 +224,14 @@
     
     <div class="post-body" itemprop="articleBody">
           <h1 id="ERNIE-Layout-Layout-Knowledge-Enhanced-Pre-training-for-Visually-rich-Document-Understanding"><a href="#ERNIE-Layout-Layout-Knowledge-Enhanced-Pre-training-for-Visually-rich-Document-Understanding" class="headerlink" title="ERNIE-Layout: Layout Knowledge Enhanced Pre-training for Visually-rich Document Understanding"></a>ERNIE-Layout: Layout Knowledge Enhanced Pre-training for Visually-rich Document Understanding</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>近年来，在富文档理解方面，已经见证了预训练技术的兴起和成功。然而，现有的大多数方法缺乏对以布局为中心的知识的系统挖掘和利用，导致性能不佳。论文提出了ERNIE-Layout，这是一种新颖的文档预训练解决方案，在整个工作流程中增强布局知识，以学习更好的表示方式，结合文本、布局和图像的特征。具体来说，我们首先在序列化阶段对输入序列进行重新排列，然后提出相关的预训练任务——阅读顺序预测，学习文档的正确阅读顺序。为了提高模型的布局意识，我们在多模态transformer中集成了空间感知解耦注意力，在预训练阶段集成了区域替换预测任务。实验结果表明ERNIE-Layout在各种下游任务上实现了卓越的性能，在关键信息提取、文档图像分类和文档问答数据集上达到新的技术水平。代码和模型可以在PaddleNLP上公开获取。</p>
-<p>VrDU：Visually-rich Document Understanding，NLU：Natural Language Understanding</p>
-<h2 id="问题及方案"><a href="#问题及方案" class="headerlink" title="问题及方案"></a>问题及方案</h2><h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>文档格式的多样性和复杂性对任务提出了新的挑战，理想的模型需要充分利用文本、布局甚至视觉信息，像人类一样充分理解视觉丰富的文档。</p>
-<p>VrDU的早期工作常采用单模态或浅多模态融合方法，这些方法是针对特定任务的，需要大量标注数据。最近预训练语言模型已经席卷了这个领域。LayoutLM、 LayoutLMv2、以及一些先进的文档预训练方法相继提出，并在各种VrDU任务中取得了巨大成功。与流行的单模态或视觉语言（Vision-Language）框架不同，<strong>文档理解模型的独特性在于如何利用布局知识。</strong>然而，现有的文档预训练解决方案通常会陷入将二维坐标作为一维位置扩展的陷阱，赋予模型布局感知能力。考虑到VrDU的特点，我们认为以布局为中心的知识应该从两个方面进行系统的挖掘和利用：</p>
-<p>（1）一方面，布局隐式地反映了文档的正确阅读顺序，而以往的方法都是将光学字符识别(OCR)的结果进行多路复用，大致按照从上到下、从左到右的方式排列token。对于具有复杂布局的文档(例如，表格、表单、多列模板)，这与人类的阅读习惯不一致，并导致下游任务的性能不佳。（2）另一方面，<strong>布局实际上是语言和语言之外的第三种形式</strong>，而目前的模型通常将布局作为一种特殊的位置特征，例如嵌入在输入层中的布局(LayoutLM)或注意层中的偏向项(LayoutLMv2)。布局与文本&#x2F;图像之间缺乏跨模态交互可能会限制模型学习布局在语义表达中的作用。</p>
-<h3 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h3><p>（1）首先，我们在序列化阶段采用现成的基于布局的文档解析器，为每个输入文档生成合适的阅读顺序，使模型接收到的输入序列比使用粗略的光栅扫描顺序更符合人类的阅读习惯。</p>
-<p>（2）然后，每个文本&#x2F;视觉token都配备了其位置嵌入和布局嵌入，并送到堆叠的多模态transformer层。受DeBERTa的解耦注意力启发， 我们提出了一种空间感知的解耦注意力机制，其中token之间的注意力权重是根据它们的隐藏状态和相对位置使用解耦矩阵计算的。最后，布局不仅作为输入token的二维位置属性，而且为语义相似度的计算提供了一个空间视角。</p>
-<h2 id="模型结构"><a href="#模型结构" class="headerlink" title="模型结构"></a>模型结构</h2><p>Ernie-layout 整体采用 Transformer Encoder 架构。</p>
-<p><img src="/2023/02/01/ERNIE-layout/image9.PNG"></p>
-<h3 id="序列模块"><a href="#序列模块" class="headerlink" title="序列模块"></a>序列模块</h3><p>用Document-Parse作为先验知识告诉模型阅读的顺序（a layout-knowledge enhanced pre-training approach），将每个token加入阅读顺序的特征。PPL被广泛用于度量语言模型的性能。通过Document-Parser序列化的输入序列的PPL比光栅扫描顺序的PPL低。</p>
-<h3 id="输入表示"><a href="#输入表示" class="headerlink" title="输入表示"></a>输入表示</h3><p>ERNIE-Layout的输入序列包括文本部分和视觉部分，每个部分的表示是其模态特征和布局嵌入的组合。</p>
-<p><strong>文本嵌入</strong>（Text Embedding）。序列化模块之后的文档token用作文本序列。</p>
-<p>在BERT-Style模型的预处理之后，两个特殊标记[CLS]和[SEP]分别附加在文本序列的开头和结尾。最后，token序列T的文本嵌入表示为:<br>$$<br>T&#x3D;E_{tk}(T)+E_{1p}(T)+E_{tp}(T)<br>$$<br>这里$E_{tk}$、$E_{1p}$、$E_{tp}$分别是token embedding、1D position embedding以及token type  embedding。其中采用可学习的 position_embeddings 。position_ids通过 OCR 工具获得。采用 [Layout-Parser](<a target="_blank" rel="noopener" href="https://github.com/Layout-Parser/">https://github.com/Layout-Parser/</a> layout-parser) 对图片中的文本内容，根据阅读顺序进行排序，安排对应的 position_ids。</p>
-<p><strong>视觉嵌入（Visual Embedding）</strong>用 Faster-RCNN 当作encoder，图片先resize成224×224 ，然后池化得到7x7的feature,之后flaten成视觉序列，特征线性映射到text embedding 同样的维度。同样地，此外还键入position embedding和token type embedding。<br>$$<br>V&#x3D;F_{vs}(V)+E_{1p}(T)+E_{tp}(T)<br>$$</p>
-<p><strong>Layout Embedding</strong>。对于每个文本token，OCR工具提供包含边界框宽度和高度的2D坐标$(x_0,y_0,x_1,y_1,w,h)$，$(x_0,y_0)$表示左上角的坐标，$(x_1,y_1)$表示右下角的坐标。$w&#x3D;x_1-x_0$，$h&#x3D;y_1-y_0$，所有坐标规范化到$[0,1000]$，使用两个嵌入层表示横坐标和纵坐标。<br>$$<br>L&#x3D;E_{2x}(x_0,x_1,W)+E_{2y}(y_0,y_1,H)<br>$$<br>$E_{2x}$表示x轴嵌入层，$E_{2y}$表示y轴嵌入层。</p>
-<p>为了获得ERNIE-Layout最终的输入，我们将每个文本和视觉嵌入和它们对应的布局嵌入整合到一起。最终的序列长度是$N+HW$，文本和视觉与相关的Layout Embedding相加后concat。<br>$$<br>H&#x3D;[T+L;V+L]<br>$$</p>
-<h3 id="多模态Transformer"><a href="#多模态Transformer" class="headerlink" title="多模态Transformer"></a>多模态Transformer</h3><p>在最终的输入表示中，文本和视觉token被拼接在一起，Transformer的自注意机制支持它们的层感知跨模式交互。但是，作为一种独特的模态，在计算注意力权重时需要考虑布局特征，并明确考虑布局特征与内容(统称文字和图像)之间的紧密性。受DeBERTa 解耦注意力的启发，其中token之间的注意力权重是使用其内容上的解耦矩阵计算的。</p>
-<p>以1D位置为例，token $i$和token $j$的相对距离为$\delta_{1p}$如下：<br>$$<br>y&#x3D; \begin{cases}<br>0,\quad &amp; i-j\leq -k \<br>2k-1,\quad &amp;i-j\ge k \<br>i-j +k,\quad &amp; others<br>\end{cases}<br>$$<br>2D位置的相对距离同理。</p>
-<p>而后计算上下文-上下文，上下文-1D 位置信息, 上下文-2D 位置信息对应的 attention 权重：<br>$$<br>A_{ij}^{ct,ct}&#x3D;Q_i^{ct}K_l^{ct} \<br>A_{ij}^{ct,1p}&#x3D;Q_i^{ct}K_{\delta_{1p}(i,j)}^{1p} + {K_{j}^{ct}Q_{\delta_{1p}(j,i)}^{1p}}^{\top} \<br>A_{ij}^{ct,2x}&#x3D;Q_i^{ct}K_{\delta_{2x}(i,j)}^{2x} + {K_{j}^{ct}Q_{\delta_{2x}(j,i)}^{2x}}^{\top} \<br>A_{ij}^{ct,2y}&#x3D;Q_i^{ct}K_{\delta_{2y}(i,j)}^{2y} + {K_{j}^{ct}Q_{\delta_{2y}(j,i)}^{2y}}^{\top} \<br>$$<br>最后，将所有这些注意得分进行汇总，得到注意矩阵$\hat A $。通过缩放和归一化操作，空间感知解耦注意力的输出为：<br>$$<br>\hat A_{ij}&#x3D;A_{ij}^{ct,ct}+A_{ij}^{ct,1p}+A_{ij}^{ct,2x}+A_{ij}^{ct,2y} \<br>H_{out}&#x3D;softmax (\frac{\hat A}{\sqrt 3d})<br>$$</p>
-<p><strong>issue 可以确认，paddlenlp 开源的 ernie-layoutx 为论文的降级版，其中的注意力模块、输入embedding模块等均与论文描述的不同。</strong></p>
-<blockquote>
-<p>ernie-layout代码中的实现:<a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/PaddleNLP/blob/develop/paddlenlp/transformers/ernie_layout/modeling.py#L315">https://github.com/PaddlePaddle/PaddleNLP/blob/develop/paddlenlp/transformers/ernie_layout/modeling.py#L315</a><br>这个attention和layoutlmv2一样的吧？</p>
-<p>考虑到商用，目前为降级开源，当前开出版本仍旧好于LayoutXLM，后续会适当的时候对外开源spatial-aware disentangled attention版本，如商业有需求请联系<a target="_blank" rel="noopener" href="https://ai.baidu.com/tech/nlp/Textanalysis">https://ai.baidu.com/tech/nlp/Textanalysis</a></p>
-</blockquote>
-<h2 id="预训练任务"><a href="#预训练任务" class="headerlink" title="预训练任务"></a>预训练任务</h2><p>ERNIE-Layout采用了四种预训练任务，包括新提出的阅读顺序预测（reading order prediction）、区域替换预测（replaced region prediction tasks）任务和传统的masked视觉语言建模、文本-图像对齐任务。</p>
-<ul>
-<li><p><strong>Reading Order Prediction：</strong> 希望注意矩阵能携带关于阅读顺序的知识，通过这种方式，我们赋予$\hat A_{ij}$一个额外的含义，即第j个token是第i个token的下一个token的概率。此外，ground truth是一个0-1矩阵G，其中1表示两个token之间存在阅读顺序关系，反之亦然。对于最后一个token，下一个token是它自己。在预训练阶段，使用交叉熵损失函数。<br>$$<br>L_{ROP}&#x3D;-\sum_{0\le i &lt; N}\sum_{0\le j &lt; N}G_{ij}log(\hat {A_{ij}})<br>$$</p>
-</li>
-<li><p><strong>Replaced Region Prediction：</strong> 在视觉编码器中，每个文档图像被处理成一个固定长度HW的序列。为了使模型能够感知图像块和文本之间的细粒度对应，在布局知识的帮助下，我们提出了区域替换预测(RRP)。具体来说，随机选取10%的图像块，用另一个图像中的块替换，处理后的图像由视觉编码器编码并输入到多模态 transformer中。然后，使用 transformer输出的[CLS]向量来预测哪些补丁被替换。所以这个任务的损失是：<br>$$<br>L_{RRP}&#x3D;-\sum_{0 \le i &lt;HW}[G_ilog(P_i)+(1-G_i)*log(1-P_i)]<br>$$<br>$G_i$是替换的图像块，$P_i$是规范化的概率。</p>
-</li>
-<li><p><strong>Masked Visual-Language Modeling</strong> ：类似 MLM（masked language modeling），MVLM（masked visual-language modeling）目标是根据masked文本上下文和整个多模态线索恢复masked文本token。</p>
-</li>
-<li><p><strong>Text-Image Alignment</strong> ：除了图像侧跨模态任务RRP，我们还采用了文本-图像对齐(TIA,Text-Image Alignment)作为文本侧任务，帮助模型学习图像区域与边界框坐标之间的空间对应关系。在这里，一些文本行是随机选择的，它们对应的区域覆盖在文档图像上。然后，引入分类层来预测每个文本标记是否被覆盖。</p>
-</li>
-</ul>
-<p>预训练任务的最终目标是<br>$$<br>L&#x3D;L_{ROP}+L_{RRP}+L_{MVLM}+L_{TIA}<br>$$</p>
-<h2 id="实验设置"><a href="#实验设置" class="headerlink" title="实验设置"></a>实验设置</h2><p>ERNIE-Layout有24个transformer层，1024个隐藏单元和16个注意头。文本token的最大序列长度为512，视觉token的最大序列长度为49。transformer初始化自RoBERTa large，视觉编码器采用Faster-RCNN 作为初始化模型。其余参数随机初始化。我们使用Adam作为优化器，学习率为1e-4，权值衰减为0.01。学习率在前10%的步骤中线性升温，然后线性衰减到0。ERNIE-Layout在24个Tesla A100 gpu上训练了20个epoch，batch大小为576。</p>
-<h2 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h2><p>为了实验的公平性，我们只使用序列化来重新排列预训练数据的读取顺序，这意味着ERNIE-Layout在微调阶段接收到的输入与比较方法中输入是一样的。</p>
-<h3 id="Key-Information-Extraction"><a href="#Key-Information-Extraction" class="headerlink" title="Key Information Extraction"></a>Key Information Extraction</h3><p>ERNIE-Layout在FUNSD, CORD, Kleister-NDA上实现STOA，并在SROIE上实现了具有竞争力的性能。值得一提的是，在FUNSD中，ERNIE-Layout较之前的最佳结果获得了7.98%的显著稳定改善(标准差为0.0011)。以上现象足以验证我们在文档预训练模型中挖掘和利用布局知识的设计理念的有效性。</p>
-<p><img src="/2023/02/01/ERNIE-layout/image1.PNG"></p>
-<p><img src="/2023/02/01/ERNIE-layout/image7.PNG"></p>
-<h3 id="与最新的LayoutLMv3对比一下"><a href="#与最新的LayoutLMv3对比一下" class="headerlink" title="与最新的LayoutLMv3对比一下"></a>与最新的LayoutLMv3对比一下</h3><p><img src="/2023/02/01/ERNIE-layout/image8.PNG"></p>
-<center><strong>LayoutLMv3 Large与ERNIE-layout Large 对比</strong></center>
-
-<table>
-<thead>
-<tr>
-<th>Model</th>
-<th>FUNSD</th>
-<th>CORD</th>
-<th>DocVQA</th>
-<th>RVL-CDIP</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>LayoutLMv3 large</strong></td>
-<td>92.08</td>
-<td><strong>97.46</strong></td>
-<td>83.37</td>
-<td>95.93</td>
-</tr>
-<tr>
-<td><strong>ERNIE-layout large</strong></td>
-<td><strong>93.12</strong></td>
-<td>97.21</td>
-<td><strong>88.41</strong></td>
-<td><strong>96.27</strong></td>
-</tr>
-</tbody></table>
-<h3 id="Document-Question-Answering"><a href="#Document-Question-Answering" class="headerlink" title="Document Question Answering"></a>Document Question Answering</h3><p>表4列出了平均归一化Levenshtein相似度(ANLS, Average Normalized Levenshtein Similarity) DocVQA评分。</p>
-<p>请注意，LayoutLMv2(#7)是基于UniLMv2(#3)开发的，该模型具有强大的问答能力，甚至在任务上击败了多模型LayoutLM(#4)。不幸的是，UniLMv2没有公开任何预训练代码或预训练模型，我们只能使用RoBERTa的参数来初始化我们的ERNIE-Layout。然而，我们感到惊讶的是ERNIE-Layout带来了令人兴奋的性能改进，(几乎是LayoutLMv2增加的两倍)。此外，我们使用模型集成在DocVQA排行榜上获得了第一名。</p>
-<p><img src="/2023/02/01/ERNIE-layout/image2.PNG"></p>
-<h3 id="Document-Image-Classification"><a href="#Document-Image-Classification" class="headerlink" title="Document Image Classification"></a>Document Image Classification</h3><p>与这些重点关注多模态语义理解的关键信息提取或文档问答任务不同，文档图像分类需要对文本内容和文档布局的宏观感知。尽管我们的预训练任务关注的是细粒度的跨模态匹配，ERNIE-Layout仍然刷新跨粒度任务的最佳性能。</p>
-<img src="/2023/02/01/ERNIE-layout/image3.PNG" style="zoom:67%;">
-
-
-
-<h2 id="预训练分析"><a href="#预训练分析" class="headerlink" title="预训练分析"></a>预训练分析</h2><h3 id="预训练任务的分析"><a href="#预训练任务的分析" class="headerlink" title="预训练任务的分析"></a>预训练任务的分析</h3><p>在这个实验中，我们从基本的MVLM任务开始实现基线模型(#1)，并集成新的任务逐步直到最终模型包含所有四个训练任务(#5)。从表6中，我们观察到RRP带来了0.95%的改善FUNSD，展示了细粒度跨模态的相互作用。当加入ROP时，FUNSD的性能进一步提高1.3%。我们认为ROP有助于模型学习阅读顺序知识的更好表示。</p>
-<p><img src="/2023/02/01/ERNIE-layout/image4.PNG"></p>
-<h3 id="注意力机制的有效性"><a href="#注意力机制的有效性" class="headerlink" title="注意力机制的有效性"></a>注意力机制的有效性</h3><p>LayoutLMv2 最初提出了空间感知的自注意，在注意力计算中考虑布局特征，后续许多方法都遵循这一思路。从表6中，我们发现采用这种机制可以提高下游任务的性能(#4 v.s. #6)。与此同时，将注意力分散到位置和内容部分是获得进一步性能提升的另一个有效解决方案(#5 v.s. #6)。</p>
-<h3 id="序列化模块的有效性"><a href="#序列化模块的有效性" class="headerlink" title="序列化模块的有效性"></a>序列化模块的有效性</h3><p>在这里，我们将探讨使用不同的序列化模块对下游VrDU任务的影响。如表7所示，使用基于布局知识的序列化模块(#2，#3)，模型可以获得更好的性能(即使没有解耦注意力)。我们将这种改进归因于这样一个事实:尽管序列化没有用于微调数据集，但在预训练后，模型有能力理解文档的正确阅读顺序。</p>
-<img src="/2023/02/01/ERNIE-layout/image5.PNG" style="zoom:67%;">
-
-
-
-<p>如图，一个复杂文档布局，使用raster-scanning order序列化为“… Session Chair: Session Chair: Session Chair: Tuula Hakkarainen …”，而使用Document-Parser序列化为：“… Session Chair: Tuula wz Session Chair: Frank Markert …”，这更符合人类的阅读习惯。</p>
-<img src="/2023/02/01/ERNIE-layout/image6.PNG" style="zoom:67%;">
-
-<p>使用Document-Parser序列化后，文档的PPL大幅下降。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/02/01/ERNIE-layout/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -650,7 +569,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
