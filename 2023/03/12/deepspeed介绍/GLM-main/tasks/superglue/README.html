@@ -1,0 +1,117 @@
+<h1 id="Use-GLM-for-your-NLU-tasks"><a href="#Use-GLM-for-your-NLU-tasks" class="headerlink" title="Use GLM for your NLU tasks"></a>Use GLM for your NLU tasks</h1><p>To use GLM for your own NLU tasks, you should implement a subclass of <code>DataProcessor</code> in <a href="dataset.py">tasks&#x2F;superglue&#x2F;dataset.py</a> and a subclass of <code>PVP</code> in <a href="pvp.py">tasks&#x2F;superglue&#x2F;pvp.py</a>. You should also specify the  We will take the RTE and ReCoRD tasks in SuperGLUE as an example.</p>
+<h2 id="1-Design-your-patterns"><a href="#1-Design-your-patterns" class="headerlink" title="1. Design your patterns"></a>1. Design your patterns</h2><p>RTE is an NLI task in which the model is required to predict text entailment between a premise and a hypothesis. The label can be <code>entailment</code> or <code>not_entailment</code> One sample from the training set is </p>
+<pre><code>premise: No Weapons of Mass Destruction Found in Iraq Yet.
+hypothesis: Weapons of Mass Destruction Found in Iraq.
+label: not_entailment
+</code></pre>
+<p>We design the pattern as</p>
+<pre><code>&quot;`hypothesis`&quot;?, [MASK], &quot;`premise`&quot;
+</code></pre>
+<p>GLM predicts “Yes” for <code>entailment</code> and “No” for <code>not_entailment</code>. “Yes” and “No” are called verbalizers for <code>entailment</code> and <code>not_entailment</code>.</p>
+<p>ReCoRD is a multi-choice QA task. Each example consists of a news article and a Cloze-style question about the article in which one entity is masked out. The system must predict the masked out entity from a list of possible entities in the provided passage. We directly adopt the cloze-style question as our pattern and use GLM to predict the masked entity. </p>
+<h2 id="2-Implement-subclass-of-DataProcessor"><a href="#2-Implement-subclass-of-DataProcessor" class="headerlink" title="2. Implement subclass of DataProcessor"></a>2. Implement subclass of <code>DataProcessor</code></h2><p>A subclass of <code>DataProcessor</code> should implement <code>get_train_examples</code>, <code>get_dev_examples</code> and <code>get_test_examples</code>, which return the examples of the train, dev, and test sets. The returned value is a list of <code>InputExample</code>. It should also implement <code>get_labels</code> to return the list of possible labels. Hete we take the <code>RTEProcessor</code> as an example:</p>
+<pre><code class="python">class RteProcessor(DataProcessor):
+    &quot;&quot;&quot;Processor for the RTE data set.&quot;&quot;&quot;
+    
+    def get_train_examples(self, data_dir):
+        return self._create_examples(os.path.join(data_dir, &quot;train.jsonl&quot;), &quot;train&quot;)
+
+    def get_dev_examples(self, data_dir, for_train=False):
+        return self._create_examples(os.path.join(data_dir, &quot;val.jsonl&quot;), &quot;dev&quot;)
+
+    def get_test_examples(self, data_dir):
+        return self._create_examples(os.path.join(data_dir, &quot;test.jsonl&quot;), &quot;test&quot;)
+
+    def get_unlabeled_examples(self, data_dir):
+        return self._create_examples(os.path.join(data_dir, &quot;unlabeled.jsonl&quot;), &quot;unlabeled&quot;)
+
+    def get_labels(self):
+        return [&quot;entailment&quot;, &quot;not_entailment&quot;]
+
+    def _create_examples(self, path: str, set_type: str, hypothesis_name: str = &quot;hypothesis&quot;,
+                         premise_name: str = &quot;premise&quot;) -&gt; List[InputExample]:
+        examples = []
+
+        with open(path, encoding=&#39;utf8&#39;) as f:
+            for line_idx, line in enumerate(f):
+                example_json = json.loads(line)
+                idx = example_json[&#39;idx&#39;]
+                if isinstance(idx, str):
+                    try:
+                        idx = int(idx)
+                    except ValueError:
+                        idx = line_idx
+                label = example_json.get(&#39;label&#39;)
+                guid = &quot;%s-%s&quot; % (set_type, idx)
+                text_a = example_json[premise_name]
+                text_b = example_json[hypothesis_name]
+
+                example = InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label, idx=idx)
+                examples.append(example)
+
+        return examples
+</code></pre>
+<p>After that, you should add the implemented class to <code>PROCESSORS</code> at the end of <a href="dataset.py">tasks&#x2F;superglue&#x2F;dataset.py</a>:</p>
+<pre><code class="python">PROCESSORS = {
+    ...
+    &quot;rte&quot;: RteProcessor
+}
+</code></pre>
+<h2 id="3-Implement-subclass-of-PVP"><a href="#3-Implement-subclass-of-PVP" class="headerlink" title="3. Implement subclass of PVP"></a>3. Implement subclass of <code>PVP</code></h2><p>To implement a subclass of <code>PVP</code>, you should first decide your verbalizers is single-token or multi-token. The verbalizers in RTE, “Yes” and “No” are single-token. Instead, the verbalizers in ReCoRD are multi-token, as one entity can be tokenized into multiple tokens with WordPiece or BPE tokenizer.</p>
+<p>For single-token task, you should set <code>is_multi_token=False</code> in the class definition. You should implement <code>get_parts</code> to return the inputs to GLM given an example and <code>verbalize</code> to return the verbalizer given a label. Take <code>RTEPVP</code> as an example:</p>
+<pre><code class="python">class RtePVP(PVP):
+    is_multi_token = False
+    VERBALIZER = {
+        &quot;not_entailment&quot;: [&quot; No&quot;],
+        &quot;entailment&quot;: [&quot; Yes&quot;]
+    }
+
+    @property
+    def spell_length(self):
+        return self.pattern_id
+
+    def get_parts(self, example: InputExample) -&gt; FilledPattern:
+        # switch text_a and text_b to get the correct order
+        text_a = example.text_a
+        text_b = example.text_b.rstrip(string.punctuation)
+        return [&#39;&quot;&#39;, self.shortenable(text_b), &#39;&quot; ?&#39;], [[self.mask], &#39;, &quot;&#39;, self.shortenable(text_a), &#39;&quot;&#39;]
+
+    def verbalize(self, label) -&gt; List[str]:
+        return RtePVP.VERBALIZER[label]
+</code></pre>
+<p>We use <code>PvP.shortenable</code> to mark the segments that can be truncated when exceeding the maximum sequence length.</p>
+<p>For multi-token task, you should set <code>is_multi_token=True</code> in the class definition. You should implement <code>get_parts</code> to return the inputs to GLM given an example and <code>get_answers</code> to return the candidates. Take <code>ReCoRDPVP</code> as an example:</p>
+<pre><code class="python">class RecordPVP(PVP):
+    is_multi_token = True
+
+    def get_answers(self, example: InputExample):
+        choices = example.meta[&#39;candidates&#39;]
+        choices = [&quot; &quot; + choice for choice in choices]
+        return choices
+
+    def get_parts(self, example: InputExample) -&gt; FilledPattern:
+        premise = self.shortenable(example.text_a)
+
+        assert &#39;@placeholder&#39; in example.text_b, f&#39;question &quot;{example.text_b}&quot; does not contain a @placeholder token&#39;
+        question_a, question_b = example.text_b.split(&#39;@placeholder&#39;)
+        return [premise, &quot; &quot; + question_a.rstrip(), [self.mask], question_b], []
+</code></pre>
+<p>After that, you should implement the class to <code>PVPS</code> at the end of <a href="pvp.py">tasks&#x2F;superglue&#x2F;pvp.py</a>:</p>
+<pre><code class="python">PVPS = {
+    ...
+    &#39;rte&#39;: RtePVP,
+    &#39;record&#39;: RecordPVP
+}
+</code></pre>
+<h2 id="4-Run-the-experiment"><a href="#4-Run-the-experiment" class="headerlink" title="4. Run the experiment"></a>4. Run the experiment</h2><p>To run the experiment for your new task, you should create a config file like <a href="/config_tasks/task_rte.sh">config_tasks&#x2F;task_rte.sh</a>. You should also specify the evaluation metrics for the task in <code>DEFAULT_METRICS</code> of <a href="finetune.py">tasks&#x2F;superglue&#x2F;finetune.py</a>:</p>
+<pre><code class="python">DEFAULT_METRICS = {
+    ...
+    &quot;record&quot;: [(&quot;EM&quot;, qa_exact_match), (&quot;F1&quot;, qa_f1)],
+    &quot;rte&quot;: [(&quot;accuracy&quot;, accuracy_metric)]
+}
+</code></pre>
+<p>Then you can run the experiment with <a href="/scripts/finetune_superglue.sh">finetune_superglue.sh</a>:</p>
+<pre><code class="shell">bash scripts/finetune_superglue.sh \
+     config_tasks/model_blocklm_large.sh \
+     config_tasks/task_rte.sh
+</code></pre>

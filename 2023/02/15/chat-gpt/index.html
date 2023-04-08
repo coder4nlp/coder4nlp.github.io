@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.lug.ustc.edu.cn/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="ChatGPT相关论文 【GPT-1】Improving Language Understanding by Generative Pre-Training. Alec Radford, Karthik Narasimhan, Tim Salimans, Ilya Sutskever [pdf] 2018.6  【GPT-2】Language Models are Unsupervised Mul">
+<meta property="og:type" content="article">
+<meta property="og:title" content="chat_gpt">
+<meta property="og:url" content="http://example.com/2023/02/15/chat-gpt/index.html">
+<meta property="og:site_name" content="Coder4nlp&#39;s Blog">
+<meta property="og:description" content="ChatGPT相关论文 【GPT-1】Improving Language Understanding by Generative Pre-Training. Alec Radford, Karthik Narasimhan, Tim Salimans, Ilya Sutskever [pdf] 2018.6  【GPT-2】Language Models are Unsupervised Mul">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2023/02/15/chat-gpt/1.png">
+<meta property="og:image" content="http://example.com/2023/02/15/chat-gpt/2.PNG">
+<meta property="article:published_time" content="2023-02-14T16:11:34.000Z">
+<meta property="article:modified_time" content="2023-02-21T11:39:42.206Z">
+<meta property="article:author" content="Coder4nlp">
+<meta property="article:tag" content="NLP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/02/15/chat-gpt/1.png">
+
+
+<link rel="canonical" href="http://example.com/2023/02/15/chat-gpt/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2023/02/15/chat-gpt/","path":"2023/02/15/chat-gpt/","title":"chat_gpt"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>chat_gpt | Coder4nlp's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Coder4nlp's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-following"><a href="/following/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>following</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ChatGPT"><span class="nav-number">1.</span> <span class="nav-text">ChatGPT</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E8%AE%BA%E6%96%87"><span class="nav-number">1.1.</span> <span class="nav-text">相关论文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transformer-%E8%BF%9B%E5%8C%96%E5%8F%B2"><span class="nav-number">1.2.</span> <span class="nav-text">Transformer 进化史</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Training-language-models-to-follow-instructions-with-human-feedback"><span class="nav-number">2.</span> <span class="nav-text">Training language models to follow instructions with human feedback</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">2.1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.2.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95"><span class="nav-number">2.3.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-number">2.3.1.</span> <span class="nav-text">数据集</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Coder4nlp</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/15/chat-gpt/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Coder4nlp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Coder4nlp's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="chat_gpt | Coder4nlp's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          chat_gpt
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-02-15 00:11:34" itemprop="dateCreated datePublished" datetime="2023-02-15T00:11:34+08:00">2023-02-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-02-21 19:39:42" itemprop="dateModified" datetime="2023-02-21T19:39:42+08:00">2023-02-21</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="ChatGPT"><a href="#ChatGPT" class="headerlink" title="ChatGPT"></a>ChatGPT</h1><h2 id="相关论文"><a href="#相关论文" class="headerlink" title="相关论文"></a>相关论文</h2><ol>
+<li><p>【GPT-1】<strong>Improving Language Understanding by Generative Pre-Training.</strong></p>
+<p><em>Alec Radford, Karthik Narasimhan, Tim Salimans, Ilya Sutskever</em> [<a target="_blank" rel="noopener" href="https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf">pdf</a>] 2018.6</p>
+</li>
+<li><p>【GPT-2】<strong>Language Models are Unsupervised Multitask Learners.</strong></p>
+<p><em>Alec Radford, Jeff Wu, Rewon Child, D. Luan, Dario Amodei, Ilya Sutskeve</em> [<a target="_blank" rel="noopener" href="https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf">pdf</a>] 2019.2</p>
+</li>
+<li><p>【GPT-3】<strong>Language Models are Few-Shot Learners.</strong></p>
+<p><em>Tom B. Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared Kaplan, Prafulla Dhariwal, Arvind Neelakantan, Pranav Shyam, Girish Sastry, Amanda Askell, Sandhini Agarwal, Ariel Herbert-Voss, Gretchen Krueger, Tom Henighan, Rewon Child, Aditya Ramesh, Daniel M. Ziegler, Jeffrey Wu, Clemens Winter, Christopher Hesse, Mark Chen, Eric Sigler, Mateusz Litwin, Scott Gray, Benjamin Chess, Jack Clark, Christopher Berner, Sam McCandlish, Alec Radford, Ilya Sutskever, Dario Amodei</em> [<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2005.14165">pdf</a>] 2020.5</p>
+</li>
+<li><p>【InstructGPT】<strong>Training language models to follow instructions with human feedback.</strong></p>
+<p><em>Long Ouyang, Jeff Wu, Xu Jiang, Diogo Almeida, Carroll L. Wainwright, Pamela Mishkin, Chong Zhang, Sandhini Agarwal, Katarina Slama, Alex Ray, John Schulman, Jacob Hilton, Fraser Kelton, Luke Miller, Maddie Simens, Amanda Askell, Peter Welinder, Paul Christiano, Jan Leike, Ryan Lowe</em> [<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2203.02155.pdf">pdf</a>] 2022.3</p>
+</li>
+<li><p>【RLHF】<strong>Augmenting Reinforcement Learning with Human Feedback.</strong></p>
+<p><em>W. Bradley Knox, Peter Stone</em> [<a target="_blank" rel="noopener" href="https://www.cs.utexas.edu/~ai-lab/pubs/ICML_IL11-knox.pdf">pdf</a>] 2011.7</p>
+</li>
+<li><p>【PPO】<strong>Proximal Policy Optimization Algorithms.</strong></p>
+<p><em>John Schulman, Filip Wolski, Prafulla Dhariwal, Alec Radford, Oleg Klimov</em> [<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1707.06347">pdf</a>] 2017.7</p>
+</li>
+<li><p>【LaMda】 <strong>LaMDA: Language Models for Dialog Applications.</strong></p>
+<p><em>Romal Thoppilan, Daniel De Freitas, Jamie Hall, Noam Shazeer, Apoorv Kulshreshtha, Heng-Tze Cheng, Alicia Jin, Taylor Bos, Leslie Baker, Yu Du, YaGuang Li, Hongrae Lee, Huaixiu Steven Zheng, Amin Ghafouri, Marcelo Menegali, Yanping Huang, Maxim Krikun, Dmitry Lepikhin, James Qin, Dehao Chen, Yuanzhong Xu, Zhifeng Chen, Adam Roberts, Maarten Bosma, Vincent Zhao, Yanqi Zhou, Chung-Ching Chang, Igor Krivokon, Will Rusch, Marc Pickett, Pranesh Srinivasan, Laichee Man, Kathleen Meier-Hellstern, Meredith Ringel Morris, Tulsee Doshi, Renelito Delos Santos, Toju Duke, Johnny Soraker, Ben Zevenbergen, Vinodkumar Prabhakaran, Mark Diaz, Ben Hutchinson, Kristen Olson, Alejandra Molina, Erin Hoffman-John, Josh Lee, Lora Aroyo, Ravi Rajakumar, Alena Butryna, Matthew Lamm, Viktoriya Kuzmina, Joe Fenton, Aaron Cohen, Rachel Bernstein, Ray Kurzweil, Blaise Aguera-Arcas, Claire Cui, Marian Croak, Ed Chi, Quoc Le</em> [<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2201.08239">pdf</a>] 2022.1</p>
+</li>
+<li><p>【Sparrow】 <strong>Improving alignment of dialogue agents via targeted human judgements.</strong></p>
+<p><em>Amelia Glaese, Nat McAleese, Maja Trębacz, John Aslanides, Vlad Firoiu, Timo Ewalds, Maribeth Rauh, Laura Weidinger, Martin Chadwick, Phoebe Thacker, Lucy Campbell-Gillingham, Jonathan Uesato, Po-Sen Huang, Ramona Comanescu, Fan Yang, Abigail See, Sumanth Dathathri, Rory Greig, Charlie Chen, Doug Fritz, Jaume Sanchez Elias, Richard Green, Soňa Mokrá, Nicholas Fernando, Boxi Wu, Rachel Foley, Susannah Young, Iason Gabriel, William Isaac, John Mellor, Demis Hassabis, Koray Kavukcuoglu, Lisa Anne Hendricks, Geoffrey Irving</em> [<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2209.14375">pdf</a>] 2022.9</p>
+</li>
+<li><p><strong>Fine-tuning language models from human preferences.</strong></p>
+<p><em>Daniel M. Ziegler, Nisan Stiennon, Jeffrey Wu, Tom B. Brown, Alec Radford, Dario Amodei, Paul Christiano, Geoffrey Irving</em> [<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1909.08593">pdf</a>][<a target="_blank" rel="noopener" href="https://github.com/openai/lm-human-preferences">code</a>] 2019.9</p>
+</li>
+<li><p><strong>Learning to summarize from human feedback.</strong></p>
+<p><em>Nisan Stiennon, Long Ouyang, Jeff Wu, Daniel M. Ziegler, Ryan Lowe, Chelsea Voss, Alec Radford, Dario Amodei, Paul Christiano</em> [<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2009.01325">pdf</a>] [<a target="_blank" rel="noopener" href="https://github.com/openai/summarize-from-feedback">code</a>] 2020.9</p>
+</li>
+<li><p><strong>Cross-task generalization via natural language crowdsourcing instructions.</strong></p>
+<p><em>Swaroop Mishra, Daniel Khashabi, Chitta Baral, Hannaneh Hajishirzi</em> [<a target="_blank" rel="noopener" href="https://aclanthology.org/2022.acl-long.244/">pdf]</a> 2021.4</p>
+</li>
+<li><p><strong>Finetuned language models are zero-shot learners</strong></p>
+<p><em>Jason Wei, Maarten Bosma, Vincent Y. Zhao, Kelvin Guu, Adams Wei Yu, Brian Lester, Nan Du, Andrew M. Dai, Quoc V. Le</em> [<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2109.01652">pdf]</a> 2021.9</p>
+</li>
+<li><p><strong>Multitask Prompted Training Enables Zero-Shot Task Generalization.</strong></p>
+<p><em>Victor Sanh, Albert Webson, Colin Raffel, Stephen H. Bach, Lintang Sutawika, Zaid Alyafeai, Antoine Chaffin, Arnaud Stiegler, Teven Le Scao, Arun Raja, Manan Dey, M Saiful Bari, Canwen Xu, Urmish Thakker, Shanya Sharma Sharma, Eliza Szczechla, Taewoon Kim, Gunjan Chhablani, Nihal Nayak, Debajyoti Datta, Jonathan Chang, Mike Tian-Jian Jiang, Han Wang, Matteo Manica, Sheng Shen, Zheng Xin Yong, Harshit Pandey, Rachel Bawden, Thomas Wang, Trishala Neeraj, Jos Rozen, Abheesht Sharma, Andrea Santilli, Thibault Fevry, Jason Alan Fries, Ryan Teehan, Tali Bers, Stella Biderman, Leo Gao, Thomas Wolf, Alexander M. Rush</em> [<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2110.08207">pdf]</a> 2021.10</p>
+</li>
+<li><p><strong>Super-NaturalInstructions: Generalization via Declarative Instructions on 1600+ NLP Tasks.</strong></p>
+<p><em>Yizhong Wang, Swaroop Mishra, Pegah Alipoormolabashi, Yeganeh Kordi, Amirreza Mirzaei, Anjana Arunkumar, Arjun Ashok, Arut Selvan Dhanasekaran, Atharva Naik, David Stap, Eshaan Pathak, Giannis Karamanolakis, Haizhi Gary Lai, Ishan Purohit, Ishani Mondal, Jacob Anderson, Kirby Kuznia, Krima Doshi, Maitreya Patel, Kuntal Kumar Pal, Mehrad Moradshahi, Mihir Parmar, Mirali Purohit, Neeraj Varshney, Phani Rohitha Kaza, Pulkit Verma, Ravsehaj Singh Puri, Rushang Karia, Shailaja Keyur Sampat, Savan Doshi, Siddhartha Mishra, Sujan Reddy, Sumanta Patro, Tanay Dixit, Xudong Shen, Chitta Baral, Yejin Choi, Noah A. Smith, Hannaneh Hajishirzi, Daniel Khashabi</em> [<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2204.07705">pdf]</a> 2022.4</p>
+</li>
+<li><p><strong>Putting Humans in the Natural Language Processing Loop: A Survey.</strong></p>
+<p><em>Zijie J. Wang, Dongjin Choi, Shenyu Xu, Diyi Yang</em> [<a target="_blank" rel="noopener" href="https://aclanthology.org/2021.hcinlp-1.8.pdf">pdf</a>] 2021.4</p>
+</li>
+<li><p><strong>Scaling Instruction-Finetuned Language Models.</strong></p>
+<p><em>Hyung Won Chung, Le Hou, Shayne Longpre, Barret Zoph, Yi Tay, William Fedus, Yunxuan Li, Xuezhi Wang, Mostafa Dehghani, Siddhartha Brahma, Albert Webson, Shixiang Shane Gu, Zhuyun Dai, Mirac Suzgun, Xinyun Chen, Aakanksha Chowdhery, Alex Castro-Ros, Marie Pellat, Kevin Robinson, Dasha Valter, Sharan Narang, Gaurav Mishra, Adams Yu, Vincent Zhao, Yanping Huang, Andrew Dai, Hongkun Yu, Slav Petrov, Ed H. Chi, Jeff Dean, Jacob Devlin, Adam Roberts, Denny Zhou, Quoc V. Le, Jason Wei</em> [<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2210.11416">pdf]</a> 2022.10</p>
+</li>
+<li><p><strong>A Multitask, Multilingual, Multimodal Evaluation of ChatGPT on Reasoning, Hallucination, and Interactivity.</strong></p>
+<p><em>Yejin Bang, Samuel Cahyawijaya, Nayeon Lee, Wenliang Dai, Dan Su, Bryan Wilie, Holy Lovenia, Ziwei Ji, Tiezheng Yu, Willy Chung, Quyet V. Do, Yan Xu, Pascale Fung</em> [<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2302.04023">pdf</a>] 2023.2</p>
+</li>
+<li><p><strong>Is ChatGPT a General-Purpose Natural Language Processing Task Solver?</strong></p>
+<p><em>Chengwei Qin, Aston Zhang, Zhuosheng Zhang, Jiaao Chen, Michihiro Yasunaga, Diyi Yang</em> [<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2302.06476">pdf</a>] 2023.2</p>
+</li>
+</ol>
+<h2 id="Transformer-进化史"><a href="#Transformer-进化史" class="headerlink" title="Transformer 进化史"></a>Transformer 进化史</h2><p><img src="/2023/02/15/chat-gpt/1.png"></p>
+<p><a target="_blank" rel="noopener" href="https://amatriain.net/blog/transformer-models-an-introduction-and-catalog-2d1e9039f376/">Transformer models: an introduction and catalog — 2023 Edition</a></p>
+<hr>
+<h1 id="Training-language-models-to-follow-instructions-with-human-feedback"><a href="#Training-language-models-to-follow-instructions-with-human-feedback" class="headerlink" title="Training language models to follow instructions with human feedback"></a>Training language models to follow instructions with human feedback</h1><hr>
+<p>InstructGPT</p>
+<p>时间：</p>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>使语言模型更大并不能使它们更好地遵循用户的意图。例如，大型语言模型可能生成不真实、有害或对用户毫无帮助的输出。换句话说，这些模型并没有与它们的用户对齐。在本文中，我们展示了一种方法，通过对人类反馈进行微调，使语言模型与用户意图在广泛的任务中保持一致。从一组标注员编写的提示和通过OpenAI API收集到的提示开始，我们收集了所需模型行为的标注器演示数据集，我们使用监督学习对GPT-3进行微调。然后，我们收集模型输出的排名数据集，使用从人类反馈中强化学习来进一步微调这个监督模型。我们将这个模型称为<strong>InstructGPT</strong>。在对提示分布的人类评估中，来自1.3B参数InstructGPT模型的输出优于来自175B GPT-3的输出，尽管它的参数少了100倍。此外，InstructGPT模型显示了真实性的改善和有毒产出的减少，同时在公开数据集上没有明显变差。尽管InstructGPT仍然会犯一些简单的错误，但我们的结果表明，使用人类反馈进行微调是使语言模型符合人类意图是一个有前途的方向。</p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>大型语言模型(LMs)可以通过“提示”，即给出一些任务示例作为输入，执行一系列自然语言处理(NLP)任务。然而，这些模型经常表达意想不到的行为，如编造事实、生成有偏见或有毒的文本，或根本不遵循用户指示。这是因为最近许多语言模型所使用目标——从互联网上预测网页上的下一个token与“有帮助地、安全地听从用户指示”的目标不同。因此，我们说语言模型的目标是不一致的。避免这些意想不到的行为对于在数百个应用程序中部署和使用的语言模型尤其重要。</p>
+<p>通过训练语言模型按照用户的意图行事，我们在对齐语言模型方面取得了进展。这既包括明确的意图，如遵循指示，也包括隐含的意图，如保持诚实，不偏见，有毒或其他有害。我们希望语言模型是有帮助的（helpful）(它们应该帮助用户解决他们的任务)，诚实的（honest）(它们不应该编造信息或误导用户)，无害的（harmless）(它们不应该对人或环境造成身体、心理或社会伤害)。我们将在第3.6节详细说明这些标准的评估。</p>
+<p>我们将重点关注调整语言模型的微调方法。具体来说，我们使用来自人类反馈的强化学习(RLHF，reinforcement learning from human feedback)微调GPT-3遵循广泛的书面指令(参见图2)（OpenAI是强化学习出家）。这项技术使用人类的偏好作为奖励信号来微调我们的模型。我们首先雇佣了一个由40名承包商组成的团队，根据他们在筛选测试中的表现来标记我们的数据(详情请参阅第3.4节和附录B.1)。然后，我们收集了提交给OpenAI API的人工编写的所需输出行为(主要是英语)演示数据集和一些标签编写的提示，并使用它来训练我们的监督学习基线。接下来，我们在更大的一组API提示上收集一个数据集，用于比较我们模型的输出。然后，我们在这个数据集上训练一个奖励模型(RM，Reward Model )，以预测我们的标签者更喜欢哪种模型输出。最后，我们使用这个RM作为奖励函数，并使用PPO算法微调我们的监督学习基线，以最大化这个奖励。我们在图2中说明了这个过程。这一过程使GPT-3的行为与特定人群(主要是我们的标签者和研究人员)的偏好相一致，而不是任何更广泛的“人类价值观”概念;我们将在第5.2节对此进行进一步讨论。我们将结果模型称为InstructGPT。</p>
+<p><img src="/2023/02/15/chat-gpt/2.PNG"></p>
+<p>标了2个数据，训练3个模型</p>
+<p>找到人写问题，或者api中收集的问题，也就是prompt</p>
+<p>然后人类写回答，这个数据做有监督的微调，step1</p>
+<p>step2: 给一个prompt，模型输出多个答案，人类对答案进行排序。</p>
+<p>有这个模型以后，这个模型可以对输出内容进行打分</p>
+<p>step3：继续微调STF，使得生成的答案能够得到一个比较高的分数。</p>
+<p>如果在step1中生成足够多的数据，不需要step2,3应该也是可行的，但是考虑到写一个答案做这种生成式的标注远远这种判别式的标注，step2可以使数据标注更加简单，更快更多的标注数据。</p>
+<p>我们主要通过让标签师对我们测试集上的模型输出质量进行评分来评估我们的模型，包括来自固定客户的提示(他们没有在训练数据中表示)。我们还对一系列公开NLP数据集进行自动评估。使用GPT-3框架训练了3个尺寸的模（1.3B, 6B, and 175B parameters）型。<strong>主要发现如下</strong>：</p>
+<ul>
+<li><p><strong>与GPT-3的输出相比，标注员明显更喜欢InstructGPT输出</strong>。在我们的测试集中，来自1.3B参数的InstructGPT模型输出优于来自175B GPT-3的输出，尽管它的参数要少100倍以上。这些模型具有相同的架构，不同之处在于InstructGPT对我们的人类数据进行了微调。即使我们在GPT-3中添加了一些few-shot以使它更好地遵循指令，这个结果也仍然成立。我们的175B InstructGPT的输出比175B GPT-3的输出更优(85±3%)，比few-shot 175B GPT-3更优(71±4%)。InstructGPT模型还根据我们的标签生成更合适的输出，并且更可靠地遵循指令中的显式约束。</p>
+</li>
+<li><p><strong>InstructGPT模型的真实性比GPT-3有所提高。</strong>在TruthfulQA基准测试中，InstructGPT生成真实且信息丰富的答案的频率大约是GPT-3的两倍。在未针对GPT-3进行反向选择的问题子集中，我们的结果同样强大。在我们的API prompt distribution的“闭域”任务中，输出不应该包含在输入中不存在的信息(例如总结和闭域QA)， InstructGPT模型在输入中不存在的信息大约是GPT-3的一半(分别是21%和41%的虚幻率（hallucination rate）)。</p>
+</li>
+<li><p><strong>InstructGPT的毒性比GPT-3略有改善，但没有偏倚。</strong>为了测量毒性，我们使用了RealToxicityPrompts数据集(Gehman等人，2020年)，并进行了自动和人工评估。当提示要尊重时，InstructGPT模型产生的有毒输出比GPT-3少约25%。在Winogender (Rudinger et al.， 2018)和CrowSPairs (Nangia et al.， 2020)数据集上，与GPT-3相比，InstructGPT没有显著改善。</p>
+</li>
+<li><p>在公开数据集上没有太大影响</p>
+</li>
+<li><p>我们的模型推广到不产生任何训练数据的“保留”标签者的偏好。为了检验我们的模型的泛化性，我们对测试者进行了一个初步的实验，发现他们更喜欢InstructGPT的输出而不是GPT-3的输出，与我们的训练者的输出率大致相同。然而，还需要更多的工作来研究这些模型在更广泛的用户群体中如何表现，以及在人们对期望行为存在分歧的输入中如何表现。</p>
+</li>
+<li><p>公共NLP数据集并不能反映我们的语言模型是如何使用的。我们比较了在我们的人类偏好数据(即InstructGPT)上微调的GPT-3和在公开NLP任务上微调的GPT-3: FLAN和T0(特别是T0++变体)。这些数据集由各种NLP任务组成，并结合了每个任务的自然语言指令。在我们的API prompt distribution中，我们的FLAN和T0模型的表现比我们的SFT基线略差，并且标签者明显更喜欢InstructGPT(与我们的基线相比，InstructGPT的胜率为73.4±2%，而我们的T0和FLAN版本分别为26.8±2%和29.8±2%)。</p>
+</li>
+<li><p>InstructGPT模型对RLHF调优分布之外的指令显示出很好的泛化效果。我们定性地探究了InstructGPT的功能，发现它能够遵循用于总结代码的指令，回答关于代码的问题，有时还遵循不同语言的指令，尽管这些指令在微调发行版中非常罕见。相比之下，GPT-3可以执行这些任务，但需要更仔细的提示，并且通常不遵循这些领域中的说明。这个结果令人兴奋，因为它表明我们的模型能够概括“遵循指令”的概念。即使在很少得到直接监督信号的任务上，他们也会保持一定的一致性。</p>
+</li>
+<li><p>InstructGPT仍然会犯简单的错误。例如，InstructGPT仍然可能无法遵循指示、编造事实、对简单问题给出冗长的模棱两可的答案，或者无法检测带有错误前提的指示。</p>
+</li>
+<li></li>
+<li><p>总的来说，</p>
+</li>
+</ul>
+<p>总的来说，我们的结果表明，使用人类偏好微调大型语言模型显著改善了它们在广泛任务上的行为，尽管仍有许多工作要做，以提高它们的安全性和可靠性。</p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>我们的方法是跟之前的工作一样的，在</p>
+<h3 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h3><p>产生了三个不同的数据集用于我们的微调过程：</p>
+<ul>
+<li>我们的SFT数据集，使用标签演示来训练我们的SFT模型，SFT数据集包含大约13k个训练提示(来自API和标签编写)，</li>
+<li>我们的RM数据集，使用模型输出的标签排名来训练我们的RM，SRM数据集有33k个训练提示(来自API和标签编写)</li>
+<li>我们的PPO数据集，没有任何人类标签，用作RLHF微调的输入。PPO数据集有31k个训练提示(仅来自API)。关于数据集大小的更多细节见表6。</li>
+</ul>
+<p>我们的提示数据集主要由提交给OpenAI API的文本提示组成，特别是那些在Playground界面上使用早期版本的InstructGPT模型(通过我们演示数据子集的监督学习进行训练)的提示</p>
+<p>标注人员写prompt,API 收集的数据</p>
+<p>。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/NLP/" rel="tag"># NLP</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/02/09/Pytorch%E6%98%BE%E5%AD%98%E5%88%86%E6%9E%90/" rel="prev" title="Pytorch显存分析">
+                  <i class="fa fa-chevron-left"></i> Pytorch显存分析
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/03/12/deepspeed%E4%BB%8B%E7%BB%8D%20-%20%E5%89%AF%E6%9C%AC/" rel="next" title="deepspeed介绍">
+                  deepspeed介绍 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Coder4nlp</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
