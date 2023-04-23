@@ -148,13 +148,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -171,6 +171,168 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/04/23/Python%E4%B8%AD%E7%9A%84ChainMap/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Coder4nlp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Coder4nlp's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Coder4nlp's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/04/23/Python%E4%B8%AD%E7%9A%84ChainMap/" class="post-title-link" itemprop="url">Python中的ChainMap</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-04-23 22:21:06 / Modified: 22:37:33" itemprop="dateCreated datePublished" datetime="2023-04-23T22:21:06+08:00">2023-04-23</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="ChainMap介绍"><a href="#ChainMap介绍" class="headerlink" title="ChainMap介绍"></a>ChainMap介绍</h1><p><code>collections.ChainMap</code>用于快速链接多个映射，并将它们视为一个单元。它通常比创建一个新字典并运行多次<code>update()</code>调用要快得多。</p>
+<p><code>ChainMap</code>的作用：</p>
+<ul>
+<li><code>ChainMap</code>将多个字典或其他映射组合在一起，以创建一个可更新的单一视图。如果没有指定映射，则提供一个空字典，以便新链始终至少有一个映射。</li>
+<li>底层映射存储在一个列表中。该列表是公共的，可以使用maps属性访问或更新。</li>
+<li>查找时，依次搜索底层映射，直到找到一个键。<strong>但是，写、更新和删除只对第一个映射进行操作！！！</strong></li>
+<li><code>ChainMap</code>通过引用合并底层映射。因此，如果某个底层映射更新了，这些更改将反映在<code>ChainMap</code>中。</li>
+<li>支持所有常用的字典方法。</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/04/23/Python%E4%B8%AD%E7%9A%84ChainMap/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/04/23/Python%E4%B8%AD%E7%9A%84Iterables-vs-Iterators/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Coder4nlp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Coder4nlp's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Coder4nlp's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/04/23/Python%E4%B8%AD%E7%9A%84Iterables-vs-Iterators/" class="post-title-link" itemprop="url">Python中的Iterables vs Iterators</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-04-23 22:05:53 / Modified: 22:17:51" itemprop="dateCreated datePublished" datetime="2023-04-23T22:05:53+08:00">2023-04-23</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Python中的Iterables-vs-Iterators"><a href="#Python中的Iterables-vs-Iterators" class="headerlink" title="Python中的Iterables vs Iterators"></a>Python中的Iterables vs Iterators</h1><p>术语<code>iterable</code>和<code>iterator</code>经常(错误地)互换使用，以描述支持迭代的对象，即允许迭代其元素的对象。实际上，<code>Python</code>中的迭代器(<code>iterators</code>)和可迭代对象(<code>iterables</code>)是两个截然不同的概念，通常会引起混淆，尤其是对新手而言。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/04/23/Python%E4%B8%AD%E7%9A%84Iterables-vs-Iterators/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -216,7 +378,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-04-09 00:20:15" itemprop="dateModified" datetime="2023-04-09T00:20:15+08:00">2023-04-09</time>
+      <time title="Modified: 2023-04-23 21:58:31" itemprop="dateModified" datetime="2023-04-23T21:58:31+08:00">2023-04-23</time>
     </span>
 
   
@@ -231,9 +393,9 @@
     <div class="post-body" itemprop="articleBody">
           <blockquote class="song">
 <p>
-            <tt>听颖师弹琴</tt><br>
-            <at>韩愈</at><br>昵昵儿女语，<br>恩怨相尔汝。<br>划然变轩昂，<br>勇士赴敌场。<br>浮云柳絮无根蒂，<br>天地阔远随飞扬。<br>喧啾百鸟群，<br>忽见孤凤皇。<br>跻攀分寸不可上，<br>失势一落千丈强。<br>嗟余有两耳，<br>未省听丝篁。<br>自闻颖师弹，<br>起坐在一旁。<br>推手遽止之，<br>湿衣泪滂滂。<br>颖乎尔诚能，<br>无以冰炭置我肠！<br>
-        </p>
+            <tt>满江红·暮雨初收</tt><br>
+            <at>〔宋代〕 柳永</at><br>暮雨初收，长川静、征帆夜落。<br>临岛屿、蓼烟疏淡，苇风萧索。<br>几许渔人飞短艇，尽载灯火归村落。<br>遣行客、当此念回程，伤漂泊。<br>桐江好，烟漠漠。<br>波似染，山如削。<br>绕严陵滩畔，鹭飞鱼跃。<br>游宦区区成底事，平生况有云泉约。<br>归去来、一曲仲宣吟，从军乐。<br>
+ </p>
 </blockquote>
 
       
@@ -261,7 +423,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/15/deepspeed%E4%BB%8B%E7%BB%8D/GLM-main/tasks/superglue/README/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/09/Pytorch%E6%98%BE%E5%AD%98%E5%88%86%E6%9E%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -279,7 +441,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/03/15/deepspeed%E4%BB%8B%E7%BB%8D/GLM-main/tasks/superglue/README/" class="post-title-link" itemprop="url">Untitled</a>
+          <a href="/2023/02/09/Pytorch%E6%98%BE%E5%AD%98%E5%88%86%E6%9E%90/" class="post-title-link" itemprop="url">Pytorch显存分析</a>
         </h2>
 
         <div class="post-meta-container">
@@ -289,15 +451,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2023-03-15 18:24:37" itemprop="dateCreated datePublished" datetime="2023-03-15T18:24:37+08:00">2023-03-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-03-14 15:54:48" itemprop="dateModified" datetime="2023-03-14T15:54:48+08:00">2023-03-14</time>
+      <time title="Created: 2023-02-09 13:11:54 / Modified: 13:13:12" itemprop="dateCreated datePublished" datetime="2023-02-09T13:11:54+08:00">2023-02-09</time>
     </span>
 
   
@@ -310,30 +466,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="Use-GLM-for-your-NLU-tasks"><a href="#Use-GLM-for-your-NLU-tasks" class="headerlink" title="Use GLM for your NLU tasks"></a>Use GLM for your NLU tasks</h1><p>To use GLM for your own NLU tasks, you should implement a subclass of <code>DataProcessor</code> in <a href="dataset.py">tasks&#x2F;superglue&#x2F;dataset.py</a> and a subclass of <code>PVP</code> in <a href="pvp.py">tasks&#x2F;superglue&#x2F;pvp.py</a>. You should also specify the  We will take the RTE and ReCoRD tasks in SuperGLUE as an example.</p>
-<h2 id="1-Design-your-patterns"><a href="#1-Design-your-patterns" class="headerlink" title="1. Design your patterns"></a>1. Design your patterns</h2><p>RTE is an NLI task in which the model is required to predict text entailment between a premise and a hypothesis. The label can be <code>entailment</code> or <code>not_entailment</code> One sample from the training set is </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">premise: No Weapons of Mass Destruction Found in Iraq Yet.</span><br><span class="line">hypothesis: Weapons of Mass Destruction Found in Iraq.</span><br><span class="line">label: not_entailment</span><br></pre></td></tr></table></figure>
-<p>We design the pattern as</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;`hypothesis`&quot;?, [MASK], &quot;`premise`&quot;</span><br></pre></td></tr></table></figure>
-<p>GLM predicts “Yes” for <code>entailment</code> and “No” for <code>not_entailment</code>. “Yes” and “No” are called verbalizers for <code>entailment</code> and <code>not_entailment</code>.</p>
-<p>ReCoRD is a multi-choice QA task. Each example consists of a news article and a Cloze-style question about the article in which one entity is masked out. The system must predict the masked out entity from a list of possible entities in the provided passage. We directly adopt the cloze-style question as our pattern and use GLM to predict the masked entity. </p>
-<h2 id="2-Implement-subclass-of-DataProcessor"><a href="#2-Implement-subclass-of-DataProcessor" class="headerlink" title="2. Implement subclass of DataProcessor"></a>2. Implement subclass of <code>DataProcessor</code></h2><p>A subclass of <code>DataProcessor</code> should implement <code>get_train_examples</code>, <code>get_dev_examples</code> and <code>get_test_examples</code>, which return the examples of the train, dev, and test sets. The returned value is a list of <code>InputExample</code>. It should also implement <code>get_labels</code> to return the list of possible labels. Hete we take the <code>RTEProcessor</code> as an example:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">RteProcessor</span>(<span class="title class_ inherited__">DataProcessor</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Processor for the RTE data set.&quot;&quot;&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_train_examples</span>(<span class="params">self, data_dir</span>):</span><br><span class="line">        <span class="keyword">return</span> self._create_examples(os.path.join(data_dir, <span class="string">&quot;train.jsonl&quot;</span>), <span class="string">&quot;train&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_dev_examples</span>(<span class="params">self, data_dir, for_train=<span class="literal">False</span></span>):</span><br><span class="line">        <span class="keyword">return</span> self._create_examples(os.path.join(data_dir, <span class="string">&quot;val.jsonl&quot;</span>), <span class="string">&quot;dev&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_test_examples</span>(<span class="params">self, data_dir</span>):</span><br><span class="line">        <span class="keyword">return</span> self._create_examples(os.path.join(data_dir, <span class="string">&quot;test.jsonl&quot;</span>), <span class="string">&quot;test&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_unlabeled_examples</span>(<span class="params">self, data_dir</span>):</span><br><span class="line">        <span class="keyword">return</span> self._create_examples(os.path.join(data_dir, <span class="string">&quot;unlabeled.jsonl&quot;</span>), <span class="string">&quot;unlabeled&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_labels</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> [<span class="string">&quot;entailment&quot;</span>, <span class="string">&quot;not_entailment&quot;</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">_create_examples</span>(<span class="params">self, path: <span class="built_in">str</span>, set_type: <span class="built_in">str</span>, hypothesis_name: <span class="built_in">str</span> = <span class="string">&quot;hypothesis&quot;</span>,</span></span><br><span class="line"><span class="params">                         premise_name: <span class="built_in">str</span> = <span class="string">&quot;premise&quot;</span></span>) -&gt; <span class="type">List</span>[InputExample]:</span><br><span class="line">        examples = []</span><br><span class="line"></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(path, encoding=<span class="string">&#x27;utf8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">            <span class="keyword">for</span> line_idx, line <span class="keyword">in</span> <span class="built_in">enumerate</span>(f):</span><br><span class="line">                example_json = json.loads(line)</span><br><span class="line">                idx = example_json[<span class="string">&#x27;idx&#x27;</span>]</span><br><span class="line">                <span class="keyword">if</span> <span class="built_in">isinstance</span>(idx, <span class="built_in">str</span>):</span><br><span class="line">                    <span class="keyword">try</span>:</span><br><span class="line">                        idx = <span class="built_in">int</span>(idx)</span><br><span class="line">                    <span class="keyword">except</span> ValueError:</span><br><span class="line">                        idx = line_idx</span><br><span class="line">                label = example_json.get(<span class="string">&#x27;label&#x27;</span>)</span><br><span class="line">                guid = <span class="string">&quot;%s-%s&quot;</span> % (set_type, idx)</span><br><span class="line">                text_a = example_json[premise_name]</span><br><span class="line">                text_b = example_json[hypothesis_name]</span><br><span class="line"></span><br><span class="line">                example = InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label, idx=idx)</span><br><span class="line">                examples.append(example)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> examples</span><br></pre></td></tr></table></figure>
-<p>After that, you should add the implemented class to <code>PROCESSORS</code> at the end of <a href="dataset.py">tasks&#x2F;superglue&#x2F;dataset.py</a>:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PROCESSORS = &#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="string">&quot;rte&quot;</span>: RteProcessor</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-Implement-subclass-of-PVP"><a href="#3-Implement-subclass-of-PVP" class="headerlink" title="3. Implement subclass of PVP"></a>3. Implement subclass of <code>PVP</code></h2><p>To implement a subclass of <code>PVP</code>, you should first decide your verbalizers is single-token or multi-token. The verbalizers in RTE, “Yes” and “No” are single-token. Instead, the verbalizers in ReCoRD are multi-token, as one entity can be tokenized into multiple tokens with WordPiece or BPE tokenizer.</p>
-<p>For single-token task, you should set <code>is_multi_token=False</code> in the class definition. You should implement <code>get_parts</code> to return the inputs to GLM given an example and <code>verbalize</code> to return the verbalizer given a label. Take <code>RTEPVP</code> as an example:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">RtePVP</span>(<span class="title class_ inherited__">PVP</span>):</span><br><span class="line">    is_multi_token = <span class="literal">False</span></span><br><span class="line">    VERBALIZER = &#123;</span><br><span class="line">        <span class="string">&quot;not_entailment&quot;</span>: [<span class="string">&quot; No&quot;</span>],</span><br><span class="line">        <span class="string">&quot;entailment&quot;</span>: [<span class="string">&quot; Yes&quot;</span>]</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">spell_length</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> self.pattern_id</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_parts</span>(<span class="params">self, example: InputExample</span>) -&gt; FilledPattern:</span><br><span class="line">        <span class="comment"># switch text_a and text_b to get the correct order</span></span><br><span class="line">        text_a = example.text_a</span><br><span class="line">        text_b = example.text_b.rstrip(string.punctuation)</span><br><span class="line">        <span class="keyword">return</span> [<span class="string">&#x27;&quot;&#x27;</span>, self.shortenable(text_b), <span class="string">&#x27;&quot; ?&#x27;</span>], [[self.mask], <span class="string">&#x27;, &quot;&#x27;</span>, self.shortenable(text_a), <span class="string">&#x27;&quot;&#x27;</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">verbalize</span>(<span class="params">self, label</span>) -&gt; <span class="type">List</span>[<span class="built_in">str</span>]:</span><br><span class="line">        <span class="keyword">return</span> RtePVP.VERBALIZER[label]</span><br></pre></td></tr></table></figure>
-<p>We use <code>PvP.shortenable</code> to mark the segments that can be truncated when exceeding the maximum sequence length.</p>
-<p>For multi-token task, you should set <code>is_multi_token=True</code> in the class definition. You should implement <code>get_parts</code> to return the inputs to GLM given an example and <code>get_answers</code> to return the candidates. Take <code>ReCoRDPVP</code> as an example:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">RecordPVP</span>(<span class="title class_ inherited__">PVP</span>):</span><br><span class="line">    is_multi_token = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_answers</span>(<span class="params">self, example: InputExample</span>):</span><br><span class="line">        choices = example.meta[<span class="string">&#x27;candidates&#x27;</span>]</span><br><span class="line">        choices = [<span class="string">&quot; &quot;</span> + choice <span class="keyword">for</span> choice <span class="keyword">in</span> choices]</span><br><span class="line">        <span class="keyword">return</span> choices</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_parts</span>(<span class="params">self, example: InputExample</span>) -&gt; FilledPattern:</span><br><span class="line">        premise = self.shortenable(example.text_a)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">assert</span> <span class="string">&#x27;@placeholder&#x27;</span> <span class="keyword">in</span> example.text_b, <span class="string">f&#x27;question &quot;<span class="subst">&#123;example.text_b&#125;</span>&quot; does not contain a @placeholder token&#x27;</span></span><br><span class="line">        question_a, question_b = example.text_b.split(<span class="string">&#x27;@placeholder&#x27;</span>)</span><br><span class="line">        <span class="keyword">return</span> [premise, <span class="string">&quot; &quot;</span> + question_a.rstrip(), [self.mask], question_b], []</span><br></pre></td></tr></table></figure>
-<p>After that, you should implement the class to <code>PVPS</code> at the end of <a href="pvp.py">tasks&#x2F;superglue&#x2F;pvp.py</a>:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PVPS = &#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="string">&#x27;rte&#x27;</span>: RtePVP,</span><br><span class="line">    <span class="string">&#x27;record&#x27;</span>: RecordPVP</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="4-Run-the-experiment"><a href="#4-Run-the-experiment" class="headerlink" title="4. Run the experiment"></a>4. Run the experiment</h2><p>To run the experiment for your new task, you should create a config file like <a href="/config_tasks/task_rte.sh">config_tasks&#x2F;task_rte.sh</a>. You should also specify the evaluation metrics for the task in <code>DEFAULT_METRICS</code> of <a href="finetune.py">tasks&#x2F;superglue&#x2F;finetune.py</a>:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DEFAULT_METRICS = &#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="string">&quot;record&quot;</span>: [(<span class="string">&quot;EM&quot;</span>, qa_exact_match), (<span class="string">&quot;F1&quot;</span>, qa_f1)],</span><br><span class="line">    <span class="string">&quot;rte&quot;</span>: [(<span class="string">&quot;accuracy&quot;</span>, accuracy_metric)]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Then you can run the experiment with <a href="/scripts/finetune_superglue.sh">finetune_superglue.sh</a>:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bash scripts/finetune_superglue.sh \</span><br><span class="line">     config_tasks/model_blocklm_large.sh \</span><br><span class="line">     config_tasks/task_rte.sh</span><br></pre></td></tr></table></figure>
+          <h1 id="Pytorch显存分析"><a href="#Pytorch显存分析" class="headerlink" title="Pytorch显存分析"></a>Pytorch显存分析</h1><p>在深度学习中，常见的错误是CUDA out of memory，这是因为显存放不下那么多模型参数和中间变量。通过及时清空中间变量，优化代码，减少batch等能够减少显存溢出。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/02/09/Pytorch%E6%98%BE%E5%AD%98%E5%88%86%E6%9E%90/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -359,7 +500,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/15/deepspeed%E4%BB%8B%E7%BB%8D/GLM-main/examples/README/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/01/ERNIE-layout/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -377,7 +518,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/03/15/deepspeed%E4%BB%8B%E7%BB%8D/GLM-main/examples/README/" class="post-title-link" itemprop="url">Untitled</a>
+          <a href="/2023/02/01/ERNIE-layout/" class="post-title-link" itemprop="url">ERNIE-layout</a>
         </h2>
 
         <div class="post-meta-container">
@@ -387,15 +528,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2023-03-15 18:24:37" itemprop="dateCreated datePublished" datetime="2023-03-15T18:24:37+08:00">2023-03-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-03-14 15:54:48" itemprop="dateModified" datetime="2023-03-14T15:54:48+08:00">2023-03-14</time>
+      <time title="Created: 2023-02-01 00:45:20 / Modified: 12:16:32" itemprop="dateCreated datePublished" datetime="2023-02-01T00:45:20+08:00">2023-02-01</time>
     </span>
 
   
@@ -408,24 +543,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="GLM-Examples"><a href="#GLM-Examples" class="headerlink" title="GLM Examples"></a>GLM Examples</h1><p>This is a directory that collects GLM’s implementation over various NLP datasets.<br>We feel lucky to collaborate with all contributors that share their implementations here.</p>
-<h2 id="Make-You-Pull-Requests-PRs"><a href="#Make-You-Pull-Requests-PRs" class="headerlink" title="Make You Pull Requests (PRs)"></a>Make You Pull Requests (PRs)</h2><p>If you also want to become a contributor of GLM, we encourage you to make PR to this repo according to the following PR rules.<br>The maintainer will check the validity before accept the PR.</p>
-<h3 id="Directory-Structure"><a href="#Directory-Structure" class="headerlink" title="Directory Structure"></a>Directory Structure</h3><p>Each PR should include the code and markdown description in a subdirectory of the current <code>examples</code> directory.<br>An example subdirectory tree is as follows:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">└── examples</span><br><span class="line">    └── &lt;Your PR directory&gt;: Huggingface Datasets identifier (recommended) or customized name</span><br><span class="line">        ├── README.md</span><br><span class="line">        ├── requirements.txt</span><br><span class="line">        └── &lt;Your code&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Please exclude data files in the PR as they take up too much space, and describe the method to acquire the data in your <code>README.md</code>.</p>
-<h3 id="Task-Description-README-md"><a href="#Task-Description-README-md" class="headerlink" title="Task Description (README.md)"></a>Task Description (README.md)</h3><p>Please at least include the following sections in your README to help its better use:</p>
-<ul>
-<li><strong>Dataset Name</strong>: serves as the markdown title.</li>
-<li><strong>Authors</strong>: Your name(s), contacts (email), and the url to your homepage(s) (if available).</li>
-<li><strong>Task Description</strong>: A short paragraph to briefly introduce what the dataset and corresponding task is about.</li>
-<li><strong>Running Commands</strong>: Provide the bash&#x2F;shell commands for preprocessing, training, and inference.</li>
-<li><strong>Results</strong>: Please provide your implementation’s final performance, along with other available comparison methods’. Ensure that they are reproducible once using your provided <code>Running Commands</code>.</li>
-<li><strong>Reference</strong>: Proper citation information for the dataset and related comparison methods.</li>
-</ul>
-<h3 id="Environment-Requirements-requirements-txt"><a href="#Environment-Requirements-requirements-txt" class="headerlink" title="Environment Requirements (requirements.txt)"></a>Environment Requirements (requirements.txt)</h3><p>Please include the necessary python packages in the file for other users to reproduce your results.</p>
-<h2 id="Example-List-To-Be-Updated"><a href="#Example-List-To-Be-Updated" class="headerlink" title="Example List (To Be Updated)"></a>Example List (To Be Updated)</h2><p>TODO</p>
-
+          <h1 id="ERNIE-Layout-Layout-Knowledge-Enhanced-Pre-training-for-Visually-rich-Document-Understanding"><a href="#ERNIE-Layout-Layout-Knowledge-Enhanced-Pre-training-for-Visually-rich-Document-Understanding" class="headerlink" title="ERNIE-Layout: Layout Knowledge Enhanced Pre-training for Visually-rich Document Understanding"></a>ERNIE-Layout: Layout Knowledge Enhanced Pre-training for Visually-rich Document Understanding</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>近年来，在富文档理解方面，已经见证了预训练技术的兴起和成功。然而，现有的大多数方法缺乏对以布局为中心的知识的系统挖掘和利用，导致性能不佳。论文提出了ERNIE-Layout，这是一种新颖的文档预训练解决方案，在整个工作流程中增强布局知识，以学习更好的表示方式，结合文本、布局和图像的特征。具体来说，我们首先在序列化阶段对输入序列进行重新排列，然后提出相关的预训练任务——阅读顺序预测，学习文档的正确阅读顺序。为了提高模型的布局意识，我们在多模态transformer中集成了空间感知解耦注意力，在预训练阶段集成了区域替换预测任务。实验结果表明ERNIE-Layout在各种下游任务上实现了卓越的性能，在关键信息提取、文档图像分类和文档问答数据集上达到新的技术水平。代码和模型可以在PaddleNLP上公开获取。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/02/01/ERNIE-layout/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -451,7 +577,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/15/deepspeed%E4%BB%8B%E7%BB%8D/GLM-main/config_tasks/config_blocklm_10B_record/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/01/15/vision-language/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -469,7 +595,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/03/15/deepspeed%E4%BB%8B%E7%BB%8D/GLM-main/config_tasks/config_blocklm_10B_record/" class="post-title-link" itemprop="url">Untitled</a>
+          <a href="/2023/01/15/vision-language/" class="post-title-link" itemprop="url">Vision-Language Pretraining &#58 Current Trends and the Future</a>
         </h2>
 
         <div class="post-meta-container">
@@ -479,15 +605,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2023-03-15 18:24:37" itemprop="dateCreated datePublished" datetime="2023-03-15T18:24:37+08:00">2023-03-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-03-14 15:54:48" itemprop="dateModified" datetime="2023-03-14T15:54:48+08:00">2023-03-14</time>
+      <time title="Created: 2023-01-15 21:27:17 / Modified: 23:05:16" itemprop="dateCreated datePublished" datetime="2023-01-15T21:27:17+08:00">2023-01-15</time>
     </span>
 
   
@@ -500,7 +620,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          {"train_micro_batch_size_per_gpu":1,"gradient_accumulation_steps":8,"steps_per_print":50,"gradient_clipping":1,"zero_optimization":{"stage":2,"contiguous_gradients":false,"overlap_comm":true,"reduce_scatter":true,"reduce_bucket_size":50000000,"allgather_bucket_size":50000000,"cpu_offload":true},"zero_allow_untested_optimizer":true,"fp16":{"enabled":true,"loss_scale":0,"loss_scale_window":1000,"hysteresis":2,"min_loss_scale":1},"optimizer":{"type":"Adam","params":{"lr":0.000005,"betas":[0.9,0.95],"eps":1e-8,"weight_decay":0.01}},"activation_checkpointing":{"partition_activations":false,"contiguous_memory_optimization":false},"wall_clock_breakdown":false}
+          <p>由<a target="_blank" rel="noopener" href="https://www.iro.umontreal.ca/~agrawal/">Aishwarya Agrawal</a> (DeepMind，蒙特利尔大学，Mila)， <a target="_blank" rel="noopener" href="http://www.damienteney.info/">Damien Teney</a> (Idiap研究所)和<a target="_blank" rel="noopener" href="http://www.aidanematzadeh.me/">Aida Nematzadeh</a> (DeepMind)编写的ACL 2022教程。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/01/15/vision-language/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -526,7 +654,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/15/deepspeed%E4%BB%8B%E7%BB%8D/GLM-main/config_tasks/config_blocklm_10B_cnndm/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/01/10/Hugging-Face%E7%9A%84Datasets-%E5%BA%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -544,7 +672,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/03/15/deepspeed%E4%BB%8B%E7%BB%8D/GLM-main/config_tasks/config_blocklm_10B_cnndm/" class="post-title-link" itemprop="url">Untitled</a>
+          <a href="/2023/01/10/Hugging-Face%E7%9A%84Datasets-%E5%BA%93/" class="post-title-link" itemprop="url">Hugging Face的Datasets 库</a>
         </h2>
 
         <div class="post-meta-container">
@@ -555,14 +683,14 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2023-03-15 18:24:37" itemprop="dateCreated datePublished" datetime="2023-03-15T18:24:37+08:00">2023-03-15</time>
+      <time title="Created: 2023-01-10 23:39:09" itemprop="dateCreated datePublished" datetime="2023-01-10T23:39:09+08:00">2023-01-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-03-14 15:54:48" itemprop="dateModified" datetime="2023-03-14T15:54:48+08:00">2023-03-14</time>
+      <time title="Modified: 2023-01-11 00:22:28" itemprop="dateModified" datetime="2023-01-11T00:22:28+08:00">2023-01-11</time>
     </span>
 
   
@@ -575,7 +703,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          {"train_micro_batch_size_per_gpu":4,"gradient_accumulation_steps":1,"steps_per_print":50,"gradient_clipping":1,"zero_optimization":{"stage":2,"contiguous_gradients":false,"overlap_comm":true,"reduce_scatter":true,"reduce_bucket_size":50000000,"allgather_bucket_size":50000000,"cpu_offload":true},"zero_allow_untested_optimizer":true,"fp16":{"enabled":true,"loss_scale":0,"loss_scale_window":1000,"hysteresis":2,"min_loss_scale":1},"optimizer":{"type":"Adam","params":{"lr":0.000005,"betas":[0.9,0.95],"eps":1e-8,"weight_decay":0.01}},"activation_checkpointing":{"partition_activations":false,"contiguous_memory_optimization":false},"wall_clock_breakdown":false}
+          <p><code>Datasets</code>是一个轻量级库，提供两个主要特性:</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/01/10/Hugging-Face%E7%9A%84Datasets-%E5%BA%93/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -593,384 +729,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/15/deepspeed%E4%BB%8B%E7%BB%8D/GLM-main/config_tasks/config_blocklm_10B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Coder4nlp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Coder4nlp's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Coder4nlp's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/03/15/deepspeed%E4%BB%8B%E7%BB%8D/GLM-main/config_tasks/config_blocklm_10B/" class="post-title-link" itemprop="url">Untitled</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-03-15 18:24:37" itemprop="dateCreated datePublished" datetime="2023-03-15T18:24:37+08:00">2023-03-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-03-14 15:54:48" itemprop="dateModified" datetime="2023-03-14T15:54:48+08:00">2023-03-14</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          {"train_micro_batch_size_per_gpu":4,"gradient_accumulation_steps":2,"steps_per_print":50,"gradient_clipping":1,"zero_optimization":{"stage":2,"contiguous_gradients":false,"overlap_comm":true,"reduce_scatter":true,"reduce_bucket_size":50000000,"allgather_bucket_size":50000000,"cpu_offload":true},"zero_allow_untested_optimizer":true,"fp16":{"enabled":true,"loss_scale":0,"loss_scale_window":1000,"hysteresis":2,"min_loss_scale":1},"optimizer":{"type":"Adam","params":{"lr":0.000005,"betas":[0.9,0.95],"eps":1e-8,"weight_decay":0.01}},"activation_checkpointing":{"partition_activations":false,"contiguous_memory_optimization":false},"wall_clock_breakdown":false}
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/15/deepspeed%E4%BB%8B%E7%BB%8D/GLM-main/config/config_blockta_large/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Coder4nlp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Coder4nlp's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Coder4nlp's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/03/15/deepspeed%E4%BB%8B%E7%BB%8D/GLM-main/config/config_blockta_large/" class="post-title-link" itemprop="url">Untitled</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-03-15 18:24:37" itemprop="dateCreated datePublished" datetime="2023-03-15T18:24:37+08:00">2023-03-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-03-14 15:54:48" itemprop="dateModified" datetime="2023-03-14T15:54:48+08:00">2023-03-14</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          {"train_micro_batch_size_per_gpu":16,"gradient_accumulation_steps":8,"steps_per_print":100,"gradient_clipping":1,"fp16":{"enabled":true,"loss_scale":0,"loss_scale_window":1000,"hysteresis":2,"min_loss_scale":1},"optimizer":{"type":"Adam","params":{"lr":0.0004,"weight_decay":0.01,"betas":[0.9,0.98],"eps":0.000001}},"activation_checkpointing":{"partition_activations":false,"contiguous_memory_optimization":false},"wall_clock_breakdown":false}
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/15/deepspeed%E4%BB%8B%E7%BB%8D/GLM-main/config/config_block_10B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Coder4nlp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Coder4nlp's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Coder4nlp's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/03/15/deepspeed%E4%BB%8B%E7%BB%8D/GLM-main/config/config_block_10B/" class="post-title-link" itemprop="url">Untitled</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-03-15 18:24:37" itemprop="dateCreated datePublished" datetime="2023-03-15T18:24:37+08:00">2023-03-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-03-14 15:54:48" itemprop="dateModified" datetime="2023-03-14T15:54:48+08:00">2023-03-14</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          {"train_micro_batch_size_per_gpu":21,"gradient_accumulation_steps":1,"steps_per_print":50,"gradient_clipping":1,"zero_optimization":{"stage":2,"contiguous_gradients":false,"overlap_comm":true,"reduce_scatter":true,"reduce_bucket_size":50000000,"allgather_bucket_size":500000000},"zero_allow_untested_optimizer":true,"fp16":{"enabled":true,"loss_scale":0,"loss_scale_window":1000,"hysteresis":2,"min_loss_scale":1},"optimizer":{"type":"Adam","params":{"lr":0.0001,"betas":[0.9,0.95],"eps":1e-8,"weight_decay":0.1}},"activation_checkpointing":{"partition_activations":false,"contiguous_memory_optimization":false},"wall_clock_breakdown":false}
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/15/deepspeed%E4%BB%8B%E7%BB%8D/GLM-main/config/config_block_large/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Coder4nlp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Coder4nlp's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Coder4nlp's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/03/15/deepspeed%E4%BB%8B%E7%BB%8D/GLM-main/config/config_block_large/" class="post-title-link" itemprop="url">Untitled</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-03-15 18:24:37" itemprop="dateCreated datePublished" datetime="2023-03-15T18:24:37+08:00">2023-03-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-03-14 15:54:48" itemprop="dateModified" datetime="2023-03-14T15:54:48+08:00">2023-03-14</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          {"train_micro_batch_size_per_gpu":16,"gradient_accumulation_steps":1,"steps_per_print":100,"gradient_clipping":1,"fp16":{"enabled":true,"loss_scale":0,"loss_scale_window":1000,"hysteresis":2,"min_loss_scale":1},"optimizer":{"type":"Adam","params":{"lr":0.0002,"weight_decay":0.1,"betas":[0.9,0.98],"eps":0.000001}},"activation_checkpointing":{"partition_activations":false,"contiguous_memory_optimization":false},"wall_clock_breakdown":false}
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/15/deepspeed%E4%BB%8B%E7%BB%8D/GLM-main/config/config_block_large_chinese/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Coder4nlp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Coder4nlp's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Coder4nlp's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/03/15/deepspeed%E4%BB%8B%E7%BB%8D/GLM-main/config/config_block_large_chinese/" class="post-title-link" itemprop="url">Untitled</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-03-15 18:24:37" itemprop="dateCreated datePublished" datetime="2023-03-15T18:24:37+08:00">2023-03-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-03-14 15:54:48" itemprop="dateModified" datetime="2023-03-14T15:54:48+08:00">2023-03-14</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          {"train_micro_batch_size_per_gpu":32,"gradient_accumulation_steps":1,"steps_per_print":100,"gradient_clipping":1,"fp16":{"enabled":true,"loss_scale":0,"loss_scale_window":1000,"hysteresis":2,"min_loss_scale":1},"optimizer":{"type":"Adam","params":{"lr":0.0004,"weight_decay":0.01,"betas":[0.9,0.98],"eps":0.000001}},"activation_checkpointing":{"partition_activations":false,"contiguous_memory_optimization":false},"wall_clock_breakdown":false}
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" title="Next page" aria-label="Next page" href="/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
 
 </div>
   </main>
@@ -1042,7 +800,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
