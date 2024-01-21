@@ -21,28 +21,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="希望2023能不一样吧！   We all learn by making mistakes, and make mistakes again to learn more.  行有不得，反求诸己。 —— 《孟子》  一切从自己身上找原因">
-<meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="http://example.com/about/index.html">
+    <meta name="description" content="Visual Studio Code的一个关键特性是它强大的调试支持。VS Code的内置调试器有助于加速你的编辑、编译和调试过程。 安装环境首先需要安装Python环境，如果是Vscode远程连接服务器，那么要Python插件安装到远程服务器中。 参考 Debugging">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vscode配置deepspeed进行debug">
+<meta property="og:url" content="http://example.com/2023/10/17/vscode%E9%85%8D%E7%BD%AEdeepspeed%E8%BF%9B%E8%A1%8Cdebug/index.html">
 <meta property="og:site_name" content="Coder4nlp&#39;s Blog">
-<meta property="og:description" content="希望2023能不一样吧！   We all learn by making mistakes, and make mistakes again to learn more.  行有不得，反求诸己。 —— 《孟子》  一切从自己身上找原因">
+<meta property="og:description" content="Visual Studio Code的一个关键特性是它强大的调试支持。VS Code的内置调试器有助于加速你的编辑、编译和调试过程。 安装环境首先需要安装Python环境，如果是Vscode远程连接服务器，那么要Python插件安装到远程服务器中。 参考 Debugging">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-01-06T17:50:00.000Z">
-<meta property="article:modified_time" content="2023-01-10T04:37:24.143Z">
+<meta property="article:published_time" content="2023-10-17T11:54:15.000Z">
+<meta property="article:modified_time" content="2023-10-17T12:01:42.391Z">
 <meta property="article:author" content="Coder4nlp">
+<meta property="article:tag" content="deepspeed">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/about/">
+<link rel="canonical" href="http://example.com/2023/10/17/vscode%E9%85%8D%E7%BD%AEdeepspeed%E8%BF%9B%E8%A1%8Cdebug/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"http://example.com/about/index.html","path":"about/index.html","title":"about"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2023/10/17/vscode%E9%85%8D%E7%BD%AEdeepspeed%E8%BF%9B%E8%A1%8Cdebug/","path":"2023/10/17/vscode配置deepspeed进行debug/","title":"vscode配置deepspeed进行debug"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>about | Coder4nlp's Blog
-</title>
+<title>vscode配置deepspeed进行debug | Coder4nlp's Blog</title>
   
 
 
@@ -128,7 +128,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -141,6 +141,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E7%8E%AF%E5%A2%83"><span class="nav-number">1.</span> <span class="nav-text">安装环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">2.</span> <span class="nav-text">参考</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -175,44 +176,105 @@
 
     </div>
 
-    <div class="main-inner page posts-expand">
+    <div class="main-inner post posts-expand">
 
 
-    
-    
-    
-    <div class="post-block" lang="en"><header class="post-header">
+  
 
-<h1 class="post-title" itemprop="name headline">about
-</h1>
 
-<div class="post-meta-container">
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/10/17/vscode%E9%85%8D%E7%BD%AEdeepspeed%E8%BF%9B%E8%A1%8Cdebug/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Coder4nlp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Coder4nlp's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="vscode配置deepspeed进行debug | Coder4nlp's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          vscode配置deepspeed进行debug
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-10-17 19:54:15 / Modified: 20:01:42" itemprop="dateCreated datePublished" datetime="2023-10-17T19:54:15+08:00">2023-10-17</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
 </div>
 
-</header>
+        </div>
+      </header>
 
-      
-      
-      <div class="post-body">
-          <blockquote>
-<p>希望2023能不一样吧！</p>
-</blockquote>
-<hr>
-<p><em>We all learn by making mistakes, and make mistakes again to learn more.</em></p>
-<hr>
-<p><em>行有不得，反求诸己。 —— 《孟子》</em></p>
-<blockquote>
-<p>一切从自己身上找原因</p>
-</blockquote>
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>Visual Studio Code的一个关键特性是它强大的调试支持。VS Code的内置调试器有助于加速你的编辑、编译和调试过程。</p>
+<h2 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h2><p>首先需要安装<code>Python</code>环境，如果是<code>Vscode</code>远程连接服务器，那么要<code>Python</code>插件安装到远程服务器中。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/editor/debugging">Debugging</a></li>
+</ol>
 
-      </div>
-      
-      
-      
     </div>
 
     
     
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/deepspeed/" rel="tag"># deepspeed</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/10/15/Pytorch%E4%B8%AD%E7%9A%84data%E5%92%8Cdetach%E5%AF%B9%E6%AF%94/" rel="prev" title="Pytorch中的data和detach对比">
+                  <i class="fa fa-chevron-left"></i> Pytorch中的data和detach对比
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/01/21/git-443%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" rel="next" title="git 443问题解决">
+                  git 443问题解决 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
 
 
 </div>
