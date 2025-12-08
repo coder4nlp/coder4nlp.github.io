@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.lug.ustc.edu.cn/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="论文：https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2404.06512Github:：https:&#x2F;&#x2F;github.com&#x2F;InternLM&#x2F;InternLM-XComposer 大型视觉-语言模型(LVLM)领域已经取得了重大进展，但由于分辨率有限，在理解细粒度视觉内容方面的挑战阻碍了其进展。最近的努力旨在增强LVLMs的高分辨率理解能力，但它们仍然限制在大约1500 × 1500像素，并限制在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="InternLM-XComposer2-4KHD A Pioneering Large Vision-Language Model Handling Resolutions from 336 Pixels to 4K HD">
+<meta property="og:url" content="http://example.com/2024/04/17/InternLM-XComposer2-4KHD-md/index.html">
+<meta property="og:site_name" content="Coder4nlp&#39;s Blog">
+<meta property="og:description" content="论文：https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2404.06512Github:：https:&#x2F;&#x2F;github.com&#x2F;InternLM&#x2F;InternLM-XComposer 大型视觉-语言模型(LVLM)领域已经取得了重大进展，但由于分辨率有限，在理解细粒度视觉内容方面的挑战阻碍了其进展。最近的努力旨在增强LVLMs的高分辨率理解能力，但它们仍然限制在大约1500 × 1500像素，并限制在">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2024/04/17/InternLM-XComposer2-4KHD-md/xcomposer-1.png">
+<meta property="og:image" content="http://example.com/2024/04/17/InternLM-XComposer2-4KHD-md/xcomposer-2.png">
+<meta property="og:image" content="http://example.com/2024/04/17/InternLM-XComposer2-4KHD-md/xcomposer-3.png">
+<meta property="og:image" content="http://example.com/2024/04/17/InternLM-XComposer2-4KHD-md/xcomposer-4.png">
+<meta property="og:image" content="http://example.com/2024/04/17/InternLM-XComposer2-4KHD-md/xcomposer-5.png">
+<meta property="og:image" content="http://example.com/2024/04/17/InternLM-XComposer2-4KHD-md/xcomposer-6.png">
+<meta property="og:image" content="http://example.com/2024/04/17/InternLM-XComposer2-4KHD-md/xcomposer-7.png">
+<meta property="og:image" content="http://example.com/2024/04/17/InternLM-XComposer2-4KHD-md/xcomposer-8.png">
+<meta property="og:image" content="http://example.com/2024/04/17/InternLM-XComposer2-4KHD-md/xcomposer-9.png">
+<meta property="og:image" content="http://example.com/2024/04/17/InternLM-XComposer2-4KHD-md/xcomposer-10.png">
+<meta property="og:image" content="http://example.com/2024/04/17/InternLM-XComposer2-4KHD-md/xcomposer-11.png">
+<meta property="og:image" content="http://example.com/2024/04/17/InternLM-XComposer2-4KHD-md/xcomposer-12.png">
+<meta property="article:published_time" content="2024-04-17T10:52:02.000Z">
+<meta property="article:modified_time" content="2024-04-17T15:34:51.945Z">
+<meta property="article:author" content="Coder4nlp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2024/04/17/InternLM-XComposer2-4KHD-md/xcomposer-1.png">
+
+
+<link rel="canonical" href="http://example.com/2024/04/17/InternLM-XComposer2-4KHD-md/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2024/04/17/InternLM-XComposer2-4KHD-md/","path":"2024/04/17/InternLM-XComposer2-4KHD-md/","title":"InternLM-XComposer2-4KHD A Pioneering Large Vision-Language Model Handling Resolutions from 336 Pixels to 4K HD"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>InternLM-XComposer2-4KHD A Pioneering Large Vision-Language Model Handling Resolutions from 336 Pixels to 4K HD | Coder4nlp's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Coder4nlp's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-following"><a href="/following/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>following</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="nav-number">2.</span> <span class="nav-text">相关工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84"><span class="nav-number">3.1.</span> <span class="nav-text">模型结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E5%88%86%E8%BE%A8%E7%8E%87%E8%BE%93%E5%85%A5"><span class="nav-number">3.2.</span> <span class="nav-text">高分辨率输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E8%AE%AD%E7%BB%83"><span class="nav-number">3.3.</span> <span class="nav-text">预训练</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4KHD%E7%9B%91%E7%9D%A3%E5%BE%AE%E8%B0%83"><span class="nav-number">3.4.</span> <span class="nav-text">4KHD监督微调</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C"><span class="nav-number">4.</span> <span class="nav-text">实验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LVLM%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C"><span class="nav-number">4.1.</span> <span class="nav-text">LVLM基准测试结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6%E5%88%86%E8%BE%A8%E7%8E%87"><span class="nav-number">4.2.</span> <span class="nav-text">深入研究分辨率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E5%88%86%E8%BE%A8%E7%8E%87%E7%AD%96%E7%95%A5%E6%B6%88%E8%9E%8D%E5%AE%9E%E9%AA%8C"><span class="nav-number">4.3.</span> <span class="nav-text">高分辨率策略消融实验</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E8%AE%BA"><span class="nav-number">5.</span> <span class="nav-text">结论</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Coder4nlp</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/17/InternLM-XComposer2-4KHD-md/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Coder4nlp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Coder4nlp's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="InternLM-XComposer2-4KHD A Pioneering Large Vision-Language Model Handling Resolutions from 336 Pixels to 4K HD | Coder4nlp's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          InternLM-XComposer2-4KHD A Pioneering Large Vision-Language Model Handling Resolutions from 336 Pixels to 4K HD
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2024-04-17 18:52:02 / Modified: 23:34:51" itemprop="dateCreated datePublished" datetime="2024-04-17T18:52:02+08:00">2024-04-17</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2404.06512">https://arxiv.org/abs/2404.06512</a><br>Github:：<a target="_blank" rel="noopener" href="https://github.com/InternLM/InternLM-XComposer">https://github.com/InternLM/InternLM-XComposer</a></p>
+<p>大型视觉-语言模型(LVLM)领域已经取得了重大进展，但由于分辨率有限，在理解细粒度视觉内容方面的挑战阻碍了其进展。最近的努力旨在增强LVLMs的高分辨率理解能力，但它们仍然限制在大约1500 × 1500像素，并限制在相对狭窄的分辨率范围内。本文提出了InternLMXComposer2-4KHD，这是将LVLM分辨率提升到4K高清(3840 × 1600)及以上的开创性探索。同时，考虑到并非所有场景都需要超高分辨率，它支持从336像素到4K标准的多种分辨率，极大地拓宽了其适用范围。具体而言，该研究通过引入一种新颖的扩展：基于自动patch配置的动态解析来推进patch划分范式。它在保持训练图像宽高比的同时，根据预训练的视觉Transformer (ViT) (336 × 336)自动改变patch计数和配置布局，从而实现从336像素到4K标准的动态训练分辨率。我们的研究表明，将训练分辨率扩大到4K高清，可以在不触及潜在改进上限的情况下实现持续的性能增强。InternLM-XComposer2-4KHD表现出卓越的能力，在16个基准测试中的10个测试中匹配甚至超过GPT4V和Gemini Pro。具有7B参数的InternLM-XComposer2-4KHD模型系列在<a target="_blank" rel="noopener" href="https://github.com/InternLM/InternLM-XComposer%E5%8F%AF%E7%94%A8%E3%80%82">https://github.com/InternLM/InternLM-XComposer可用。</a></p>
+<span id="more"></span>
+
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>近年来，大型语言模型(LLMs)的进展[10,21,29,39,73,78,91-93]引发了大型视觉-语言模型(LVLMs)的发展。这些模型已被证明可以熟练地完成图像描述[14,17]和视觉问答(VQA)[31, 33, 57, 107]等任务。然而，由于其有限的分辨率，它们很难处理包含精细细节的图像，如图表[68]、表格[87]、文档[70]和信息图[69]。这限制了它们在现实场景中的实际应用。</p>
+<p>最近的进展旨在提高大型视觉-语言模型(LVLM)的分辨率。一些方法[36,48,66,97]涉及直接自适应高分辨率视觉编码器。然而，视觉Transformer (ViT)架构在处理不同分辨率和宽高比的图像时存在不足，从而限制了其有效处理不同输入的能力。或者，一些方法[37,46,50,51,55,59,99]保持视觉编码器的分辨率，将高分辨率图像分割为多个低分辨率块。然而，这些方法受到分辨率不足的限制，通常在1500 × 1500左右，不能满足日常内容的需求，例如网站截图[85]、文档页面[70]和蓝图[69]。此外，它们被限制在一些预定义的高分辨率设置[36,46,48,50,51,55,59,66,97]或有限的分辨率范围[37,99]，从而限制了它们在各种应用程序中的用途。</p>
+<p>本文提出InternLM-XComposer2- 4KHD，一种开创性的模型。首次将大型视觉-语言模型((LVLMs)的分辨率能力扩展到4K高清甚至更高，从而在高分辨率视觉-语言理解方面设立了一个新标准。InternLM-XComposer2-4KHD旨在处理广泛的分辨率，支持从336像素到4K高清的任何纵横比的图像，便于在现实环境中部署。</p>
+<p>InternLM-XComposer2-4KHD遵循patch划分[45,50]范式，并通过合并一个创新的扩展来增强它：自动补丁配置的动态解析。具体来说，将大型视觉语言模型(LVLMs)的分辨率扩展到4K高清甚至更高的标准，远远不仅仅是增加补丁的数量。它涉及一种微妙的方法来克服特定挑战。（1）动态分辨率和自动patch配置：为解决高分辨率训练数据的稀缺问题，该框架引入了一种策略，在自动布局配置的同时动态调整分辨率。在训练过程中，它保持图像的原始宽高比比，同时自适应地改变patch (336 × 336)布局和计数。这导致训练分辨率超过原始图像分辨率，达到4KHD，解决了高分辨率数据的不足。（2）处理patch配置的可变性：尽管动态分辨率训练表面上很简单，但补丁配置的可变性会严重混淆LVLMs。为缓解这一问题，在每行patch token之后引入一个换行标记，以清晰地描述补丁布局，减少训练模糊性，并显著提高性能。（3）超越4K分辨率的推论：我们的观察表明，即使在高达4K分辨率的图像上进行训练，该模型也可以通过处理更高分辨率的图像，在推理过程中实现额外的性能改进。</p>
+<p>此外，将训练分辨率扩大到4K标准可以导致性能的持续改善，突出了甚至超过4K分辨率的训练潜力。这强调了进一步增强模型能力的能力，并为在大型视觉-语言模型领域内推进高分辨率图像处理的前沿提出了一个有希望的道路。</p>
+<p>在跨领域的16个不同基准上评估了InternLM-XComposer2-4KHD，包括5个具有挑战性的HD-OCR数据集(DocVQA[70]、ChartQA[68]、InfographicVQA[69]、TextVQA[87]和OCRBench[58])。与之前的开源LVLM模型和闭源api相比，所提出方法在16个基准中的6个中实现了SOTA结果，尽管只有7B参数，但显示出有竞争力的性能。如图1所示，InternLM-XComposer2-4KHD在10个基准测试中的性能甚至超过了GPT4V[74]和Gemini Pro[90]。值得注意的是，所提出方法在5个HD-OCR数据集上表现出了优异的性能，大大超过了现有的开源LVLM。</p>
+<h2 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h2><p>**大型视觉语言模型(LVLMs)**。大型语言模型(LLMs)[6, 9, 10, 23, 39, 41, 73, 76, 78, 91 - 93, 108]由于在文本生成和问答等各种与语言相关的任务中令人印象深刻的表现，受到了极大的关注。在这种热情的支持下，最近出现了大型视觉-语言模型(LVLMs)[4, 7, 16, 18, 19, 25, 28, 32, 47, 74, 77, 102, 110, 113]，将llm与视觉编码器[79,89,109]相结合，以利用语言和视觉模态的互补优势。通过融合文本和视觉表示，LVLMs可以在视觉上下文中建立语言基础，从而能够更全面地理解和生成多模态内容[5,11,14,20,27,51,60,95]。</p>
+<p>用于高分辨率理解的LVLMs。大型视觉-语言模型(LVLMs)通常使用CLIP-ViT作为视觉编码器来完成视觉相关任务。然而，视觉编码器对低分辨率的依赖，如224 × 224或336 × 336像素，限制了其在OCR和文档&#x2F;图表感知等高分辨率任务中的有效性。为了增强对高分辨率的理解，最近的工作主要采用以下策略:(1)高分辨率(HR)视觉编码器或双编码器，以满足HR和低分辨率(LR)输入[36,48,66,97]。例如，Vary[97]引入了一个支持HR输入的新图像编码器，然后将其与原始CLIP视觉编码器的LR嵌入连接起来。类似地，CogAgent[36]和Mini-Gemini[48]也使用不同的视觉编码器分离HR和LR图像，随后使用交叉注意力模块合并它们的特征。所提出方法提供了一个更简化的解决方案，并在不同分辨率和长宽比的输入中显示出优势。(2)裁剪后的图像块[37,46,50,51,59,99,101]。例如，Monkey[50]利用滑动窗口将图像分割为小块，然后使用LoRA微调进行处理。TextMonkey[59]进一步提出了转移窗口注意力和token重采样器来考虑不同补丁之间的联系。这些方法受限于一些预定义的高分辨率设置[36、46、48、50、51、55、59、66、97]或有限的分辨率范围[37、99]。相反，所提出方法设计了一种动态图像划分策略，以支持从336像素缩放到4K分辨率，最大分辨率比以前的方法更大(例如，Monkey[50]的1.5k和UReader的2k[101])。</p>
+<p>用于文档理解的LVLMs。文档理解涉及分析和理解各种数字文档，如数字、表格和学术论文。许多文档理解任务需要模型来处理高分辨率输入、复杂布局、各种纵横比和不同的文档格式。为了增强 LVLMs理解文档的能力，一些工作收集并构建了高质量的文档指令调优数据，包括LLaVAR [112]， mplug docowl[100]和TGDoc[96]。DocPediaDocPedia[30]在频域处理文档输入。之前的一些工作通过为高分辨率输入设计特殊模块，如HR和LR编码器[36,97]或裁剪的图像块[59,99,101]，提高了文档理解能力。InternLMXComposer2-4KHD首次扩展到4K分辨率输入，并在与OCR相关的基准上展示了强大的文档理解能力。此外，该方法还在其他通用LVLM基准上取得了可比的结果，如感知和推理[15,33,57,61]。</p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="模型结构"><a href="#模型结构" class="headerlink" title="模型结构"></a>模型结构</h3><p>InternLM-XComposer2- 4khd的模型架构主要遵循InternLM-XComposer2[27]的设计(为了简单，XComposer2在以下)，包括一个轻量级视觉编码器OpenAI ViT-Large&#x2F;14、大型语言模型InternLM2-7B和部分LoRA以实现高效对齐。我们建议读者阅读XComposer2论文以了解更多细节。</p>
+<h3 id="高分辨率输入"><a href="#高分辨率输入" class="headerlink" title="高分辨率输入"></a>高分辨率输入</h3><p>动态图像分割。利用静态输入图像大小来处理高分辨率图像，特别是具有不同纵横比的图像，既不高效也不有效。为了克服这个限制，我们引入了一种动态图像分割方法，如图4所示。该方法战略性地将图像分割为更小的块，同时保持原始图像的长宽比的完整性。</p>
+<p><img src="/2024/04/17/InternLM-XComposer2-4KHD-md/xcomposer-1.png"></p>
+<p>给定最大分区数$H$，大小为$[H, w]$的图像$x$被调整大小并填充为大小为$[ph × 336, pw × 336]$的新图像$\hat x$。这个过程受以下约束：<br>$$<br>p_w \times p_h \le H;p_h&#x3D;[pw \times h&#x2F;w]<br>$$</p>
+<p>这里$p_w$和$p_h$分别表示每一行和每列中的patch数量。然后，我们将$\hat x$分割为$p_h \times p_w$非重叠patches。每个patch是一个$336 \times 336$大小的小图像，我们将这些patch视为ViT的单个输入。</p>
+<p>接下来，我们使用“HD-H” 来表示H patches约束下的高分辨率设置。例如，<code>HD-9</code>允许多达9个patches，包括一系列的分辨率，如1008×1008, 672×1344, 336×3024等。</p>
+<p><strong>全局-局部格式</strong>。对于每个输入图像，我们将其以两个视图呈现给模型。第一个是全局视图，其中图像被调整为固定大小(在我们的例子中是336 × 336)。这提供了对图像的宏观理解。根据经验，我们发现这对于LVLM正确理解图像至关重要。第二个视图是局部视图。我们使用前面提到的动态图像划分策略将图像划分为图像块，并从每个图像块中提取特征。特征提取后，这些块被重新组装成一个大的特征图。经过简单的token合并过程后，特征映射被平展为最终的局部特征。</p>
+<p><strong>图像2D结构换行指示器。</strong>假设图像具有2D结构，并且图像比例是动态的，那么每行的token数量可以在不同的图像中不同。这种变化可能会混淆LVLM，使其难以确定哪些token属于图像的同一行，哪些标记属于下一行。这种混淆可能会阻碍LVLM理解图像2D结构的能力，这对于理解文档、图表和表格等结构化图像内容至关重要。为解决这个问题，我们在展平之前在图像特征的每行末尾引入了一个可学习的换行符(“\n”)标记。最后，我们将全局和局部视图连接起来，在它们之间插入一个特殊的“ separate ”标记来区分这两个视图。</p>
+<h3 id="预训练"><a href="#预训练" class="headerlink" title="预训练"></a>预训练</h3><p>在预训练阶段，LLM被冻结，而视觉编码器和部分LoRA都进行微调，以使视觉token与LLM对齐。预训练数据主要遵循XComposer2中的设计，该设计有三个目标：1)通用语义对齐，2)世界知识对齐，3)视觉能力增强。本文专注于高分辨率和结构化图像理解。因此，我们收集了更多的相关数据来增强这一特定能力。如表1所示，我们为此使用了不同的OCR数据集。</p>
+<p><img src="/2024/04/17/InternLM-XComposer2-4KHD-md/xcomposer-2.png"></p>
+<p>在实践中，采用OpenAI CLIP ViT-L-14-336作为视觉编码器。与XComposer2不同，我们保持ViT分辨率为336 × 336，并通过更多的补丁增加输入分辨率。对于动态图像分割策略，我们使用“ HD-25” 作为修饰说明。对于每个图像或块，通过简单的合并操作将图像标记数减少到1&#x2F;4。我们通过通道维度将附近的4个token连接到一个新token中，然后通过MLP将其与LLM对齐。“ separate” 和“ \n ”token是随机初始化的。对于部分LoRA，我们将LLM解码器块中所有线性层的秩设置为256。我们的训练过程涉及4096的批量大小，跨越两个epoch。在前1%的训练步骤内，学习率线性增加到2 × 10−4。之后，它根据余弦衰减策略减少到0。为了保留视觉编码器的现有知识，我们应用了分层学习率(LLDR)衰减策略，并将衰减因子设置为0.90。</p>
+<h3 id="4KHD监督微调"><a href="#4KHD监督微调" class="headerlink" title="4KHD监督微调"></a>4KHD监督微调</h3><p>在预训练后，赋予模型理解高分辨率图像和解决各种挑战的能力。不同于以往的感知任务(如VQAv2、GQA)，这些任务通常根据图像中明显的目标来回答问题。<strong>与OCR相关的任务依赖于对高分辨率图像中的文本的详细理解。</strong>例如，在InfoVQA中，50%的图像的长边长度超过2000像素。低分辨率的输入会扭曲密集的文本信息，导致模型无法理解。然而，我们观察到上述<strong>感知任务存在分辨率饱和问题</strong>，其中分辨率的影响变得可以忽略不计。</p>
+<p>为解决这个问题，本文提出一种混合分辨率训练策略，以提高训练效率。对于需要高分辨率的任务，我们在训练期间采用“ HD-55 ”设置。这允许输入4K (3840 × 1600)图像，而不需要额外的图像压缩。这些任务称为表2中的HD-OCR QA任务。对于其他任务，我们实现了动态解析策略。图像会被调整到原始大小和“HD25 ”设置指定的大小之间的范围内。这种动态方法增强了LVLM对输入分辨率差异的鲁棒性，从而使LVLM在推理过程中利用更大的分辨率。例如，我们观察到，当LVLM在“ HD25 ”设置下训练时，使用“ HD30 ”设置在大多数与ocr相关的任务上产生了更好的结果。</p>
+<p><img src="/2024/04/17/InternLM-XComposer2-4KHD-md/xcomposer-3.png"></p>
+<p>在实践中，我们以2048的批量大小联合训练所有组件超过在3500步。对来自多个源的数据进行加权采样，权重基于每个源的数据数量。由于“HD55” 设置比“HD-25”多两倍的图像token，我们调整数据加载器来为它们启用不同的批量大小，并相应地调整它们的权重。最大学习率设置为5 × 10−5，每个组件都有自己独特的学习策略。对于视觉编码器，我们将LLDR设置为0.9，这与预训练策略相一致。对于LLM，我们采用固定的学习率比例因子0.2。这减慢了LLM的更新，在保留其原始能力和将其与视觉知识对齐之间实现平衡。</p>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>在本节中，我们在监督微调后验证了我们的InternLM-XComposer2-4KHD(为简单起见，以下为IXC2-4KHD)的基准性能。</p>
+<h3 id="LVLM基准测试结果"><a href="#LVLM基准测试结果" class="headerlink" title="LVLM基准测试结果"></a>LVLM基准测试结果</h3><p>在表3和表4中，我们比较了IXC2- 4KHD与SOTA开源LVLMs和闭源api的基准列表。本文报告了DocVQA[70]、ChartQA[68]、InfographicVQA[69]、TextVQA[87]、OCRBench[58]、MMStar[15]、MathVista[61]、MMMU[107]、AI2D[42]、MME[31]、MMBench (MMB)[57]、MMBench- chinese (MMBCN)[57]、SEED-Bench Image Part (SEEDI)[45]、QBench-Testset (QBenchT)[98]、MM-Vet[105]、HallusionBench (HallB)[34]的结果。主要在OpenCompass VLMEvalKit[24]上对实验结果进行统一再现。</p>
+<p><img src="/2024/04/17/InternLM-XComposer2-4KHD-md/xcomposer-4.png"></p>
+<p><img src="/2024/04/17/InternLM-XComposer2-4KHD-md/xcomposer-5.png"></p>
+<p><strong>与闭源api的比较</strong>。如表3所示，IXC2-4KHD在各种基准测试中表现出具有竞争力的性能，可以与闭源api相媲美。由于其高分辨率输入，IXC2- 4KHD在DocVQA上取得了90.0%的分数，在ChartQA上取得了81.0%的分数，从而以不小的差距超过了GPT-4V和Gemini-Pro。在具有挑战性的InfographicVQA任务中，所提出模型是第一个接近闭源api性能的开源模型，性能超过之前的开源模型近20%。除了与ocr相关的任务外，IXC2-4KHD是一个通用的大型视觉-语言模态，在语义级任务中表现出色，显示出有竞争力的结果。</p>
+<p><strong>与开源模型的比较。</strong>在相似的模型规模下，与开源LVLMs进行了全面比较。如表4所示，我们的模型显著优于现有的开源模型，在所有基准上都取得了有竞争力的结果。值得注意的是，InternLM-XComposer2系列是唯一在具有挑战性的MMStar基准上取得高于50%分数的方法。</p>
+<p><strong>高分辨率理解评估。</strong>将IXC2-4KHD与专门为高分辨率理解任务设计的模型进行比较。我们在表5中报告了5个高分辨率基准的结果，作为一般的LVLM， IXC2-4KHD在这些任务上显示了卓越的性能，并以很大的优势超过了竞争对手。例如，IXC2-4KHD在InfographicVQA上的得分为68.6%，超过了最近的DocOwl 1.5，提高了17.9%。在OCRBench测试平台上，IXC2-4KHD获得了67.5%的性能增益，比CogAgent高出8.5%。</p>
+<p><img src="/2024/04/17/InternLM-XComposer2-4KHD-md/xcomposer-6.png"></p>
+<h3 id="深入研究分辨率"><a href="#深入研究分辨率" class="headerlink" title="深入研究分辨率"></a>深入研究分辨率</h3><p><strong>高分辨率训练对于HD-OCR任务至关重要。</strong>我们研究了四种分辨率设置：HD-9(最多1561个图像标记，我们只是简单地声明一下)、HD16(2653个标记)、HD-25(4057个标记)和4KHD(8737个标记)。在这里，我们报告了InfoVQA、DocVQA和TextVQA的验证集，ChartQA和AI2D的测试集，MMBench EN-Test，以及SEEDBench的2k子集(我们称它为SEED∗)。在接下来的实验中，我们默认报告上述基准的结果。</p>
+<p>如图5所示，我们注意到随着分辨率的增加，HD-OCR任务的显著改善。例如，该模型在HD-9设置下的InfographicVQA上只获得了50.5%的分数。然而，当我们切换到HD-16设置时，我们观察到性能提高了10.2%。随着分辨率的增加，性能继续提高，即使在4KHD设置下也没有观察到饱和度。由于计算限制，将改进上限的探索推迟到未来的工作。在其他与ocr相关的任务中，提高分辨率所带来的性能增益相对较小。对于与感知相关的基准，性能在四种设置之间的差异可以忽略不计的分辨率上达到饱和。</p>
+<p><img src="/2024/04/17/InternLM-XComposer2-4KHD-md/xcomposer-7.png"></p>
+<p><strong>更高的推理分辨率可以在与文本相关的任务上取得更好的结果。</strong>从我们的实验中得到的一个有趣的观察是，我们的模型在以稍高的分辨率进行推断时，往往会在与文本相关的任务上产生改进的结果。我们将HD-9、HD-16、HD-25的结果列于表6。例如，IXC2-HD9在InfographicVQA上获得了50.5%的分数。当我们使用HD16进行推断时，我们看到性能提高了8.1%，而无需额外的训练。在IXC2-HD16和IXC2-HD25上也观察到了类似的改进。假设训练中使用的动态图像标记长度增强了LVLM的鲁棒性，当图像中的文本在更高分辨率的输入中更”清晰”时，会得到更好的结果。相反，在这种设置下，ChartQA的结果会持续下降。这可能是由于当分辨率改变时，模型对图表结构感到困惑。此外，与图5的观察结果类似，分辨率对感知相关基准的影响似乎非常小。</p>
+<p><img src="/2024/04/17/InternLM-XComposer2-4KHD-md/xcomposer-8.png"></p>
+<p><strong>可视化的结果。</strong>我们提供了图2和图3所示的超高清图像可视化结果。请参阅附录以获取更多结果。</p>
+<p><img src="/2024/04/17/InternLM-XComposer2-4KHD-md/xcomposer-9.png"></p>
+<h3 id="高分辨率策略消融实验"><a href="#高分辨率策略消融实验" class="headerlink" title="高分辨率策略消融实验"></a>高分辨率策略消融实验</h3><p><strong>全局视图的作用。</strong>我们首先考察Global-Local格式中的Global视图的影响。如表7所示，我们发现全局视图对于LVLM准确理解输入图像至关重要。当它被移除时，模型在所有基准上的表现都更差。例如，在没有全局视图的情况下，模型在MMBench测试中的性能下降了−4.4%。全局视图提供了对图像的一般宏观理解，而模型很难从局部视图中的大量token中推导出来。</p>
+<p><img src="/2024/04/17/InternLM-XComposer2-4KHD-md/xcomposer-10.png"></p>
+<p><strong>换行符的作用。</strong>在展开操作之前，我们在图像特征的每行末尾合并一个特殊的换行符。这个token是图像2D结构的指示器。我们在表8中检查了它对HD-9和4KHD策略的影响。当采用固定的高分辨率策略HD-9时，从换行令牌获得的好处很小。这可以归因于LVLM在训练后处理图像比率有限差异的能力。然而，当实现更具挑战性的4KHD (HD-25 + HD-55)策略时，LVLM在没有换行指示符的情况下，在图像比例和token数量方面表现出显著的多样性，在与ocr相关的任务上表现出显著的性能下降。这一发现支持了我们的假设，即当图像标记直接展平为一维序列时，LVLM很难理解图像的形状。换行符可以帮助模型更好地理解图像的结构。</p>
+<p><img src="/2024/04/17/InternLM-XComposer2-4KHD-md/xcomposer-11.png"></p>
+<p><strong>令牌合并策略的影响。</strong>在实践中，我们采用一种简单的合并策略，沿着通道维度连接四个相邻的令牌。我们发现这种方法在有效减少图像token的数量方面是有效的。本文研究了4KHD设置下不同token合并策略的影响。在表9中，我们研究了两个额外的策略：ReSampler[5]和C-Abstrator[12]，它们的默认设置和相同的压缩率0.25，即将具有576个标记的图像减少到144个标记。结果表明，concatenation和C-Abstractor都工作得很好，在大多数基准上得到了相似的结果，这一观察结果也与MM-1[71]中的研究一致，即连接器的影响较小。然而，重采样器的性能比其他方法差，有明显的间隔。这是由于用于收集信息的可学习查询需要大量数据进行训练造成的，预训练数据有点轻量，可以完全收敛。</p>
+<p><img src="/2024/04/17/InternLM-XComposer2-4KHD-md/xcomposer-12.png"></p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>本文提出InternLM-Xcomposer2- 4KHD，在与OCR相关的任务上超过了之前的开源模型的性能，并在通用LVLM基准上取得了有竞争力的结果。由于我们的动态分辨率和自动补丁配置，我们的模型支持最高可达4K高清的训练分辨率。集成了一个全局视图块来支持宏观理解，并集成了一个可学习的换行符来处理各种输入图像分辨率。随着HD-OCR任务的训练分辨率增加，模型的性能不断提高。值得注意的是，即使对于4KHD设置，也没有观察到任何性能饱和，而且由于更高分辨率输入的计算负担增加，也没有探索上限。在未来的工作中，我们计划探索精确LVLM训练和推理的有效解决方案，使我们的模型在保持计算效率的同时处理更高的分辨率。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">instances: [&#123;&#x27;samples&#x27;: &#123;&#x27;data_type&#x27;: &#x27;multi&#x27;,</span><br><span class="line">                             &#x27;image&#x27;: tensor([[[[-0.9748, -0.9310, -0.9602,  ..., -0.9456, -0.9602, -0.9164],</span><br><span class="line">                         [-0.9893, -0.9456, -0.9456,  ..., -0.8580, -0.9310, -0.9456],</span><br><span class="line">                         [-0.9602, -0.9748, -0.9748,  ..., -0.9018, -0.9310, -0.9310],</span><br><span class="line">                         ...,</span><br><span class="line">                         [-0.7412, -0.7704, -0.7412,  ..., -0.7120, -0.7266, -0.7266],</span><br><span class="line">                         [-0.7120, -0.7704, -0.7704,  ..., -0.6828, -0.7266, -0.6682],</span><br><span class="line">                         [-0.7120, -0.7266, -0.7558,  ..., -0.6536, -0.6974, -0.6390]],</span><br><span class="line">               </span><br><span class="line">                        [[-0.9117, -0.8666, -0.8967,  ..., -0.8816, -0.8967, -0.8516],</span><br><span class="line">                         [-0.9267, -0.8816, -0.8816,  ..., -0.7916, -0.8666, -0.8816],</span><br><span class="line">                         [-0.8967, -0.9117, -0.9117,  ..., -0.8366, -0.8666, -0.8666],</span><br><span class="line">                         ...,</span><br><span class="line">                         [-0.6715, -0.7016, -0.6715,  ..., -0.6415, -0.6565, -0.6565],</span><br><span class="line">                         [-0.6415, -0.7016, -0.7016,  ..., -0.6115, -0.6565, -0.5965],</span><br><span class="line">                         [-0.6415, -0.6565, -0.6865,  ..., -0.5815, -0.6265, -0.5665]],</span><br><span class="line">               </span><br><span class="line">                        [[-0.6839, -0.6412, -0.6697,  ..., -0.6555, -0.6697, -0.6270],</span><br><span class="line">                         [-0.6981, -0.6555, -0.6555,  ..., -0.5701, -0.6412, -0.6555],</span><br><span class="line">                         [-0.6697, -0.6839, -0.6839,  ..., -0.6128, -0.6412, -0.6412],</span><br><span class="line">                         ...,</span><br><span class="line">                         [-0.4564, -0.4848, -0.4564,  ..., -0.4279, -0.4422, -0.4422],</span><br><span class="line">                         [-0.4279, -0.4848, -0.4848,  ..., -0.3995, -0.4422, -0.3853],</span><br><span class="line">                         [-0.4279, -0.4422, -0.4706,  ..., -0.3711, -0.4137, -0.3568]]],</span><br><span class="line">               </span><br><span class="line">               </span><br><span class="line">                       [[[-0.9748, -0.9310, -0.9602,  ..., -0.9456, -0.9602, -0.9164],</span><br><span class="line">                         [-0.9893, -0.9456, -0.9456,  ..., -0.8580, -0.9310, -0.9456],</span><br><span class="line">                         [-0.9602, -0.9748, -0.9748,  ..., -0.9018, -0.9310, -0.9310],</span><br><span class="line">                         ...,</span><br><span class="line">                         [-0.7412, -0.7704, -0.7412,  ..., -0.7120, -0.7266, -0.7266],</span><br><span class="line">                         [-0.7120, -0.7704, -0.7704,  ..., -0.6828, -0.7266, -0.6682],</span><br><span class="line">                         [-0.7120, -0.7266, -0.7558,  ..., -0.6536, -0.6974, -0.6390]],</span><br><span class="line">               </span><br><span class="line">                        [[-0.9117, -0.8666, -0.8967,  ..., -0.8816, -0.8967, -0.8516],</span><br><span class="line">                         [-0.9267, -0.8816, -0.8816,  ..., -0.7916, -0.8666, -0.8816],</span><br><span class="line">                         [-0.8967, -0.9117, -0.9117,  ..., -0.8366, -0.8666, -0.8666],</span><br><span class="line">                         ...,</span><br><span class="line">                         [-0.6715, -0.7016, -0.6715,  ..., -0.6415, -0.6565, -0.6565],</span><br><span class="line">                         [-0.6415, -0.7016, -0.7016,  ..., -0.6115, -0.6565, -0.5965],</span><br><span class="line">                         [-0.6415, -0.6565, -0.6865,  ..., -0.5815, -0.6265, -0.5665]],</span><br><span class="line">               </span><br><span class="line">                        [[-0.6839, -0.6412, -0.6697,  ..., -0.6555, -0.6697, -0.6270],</span><br><span class="line">                         [-0.6981, -0.6555, -0.6555,  ..., -0.5701, -0.6412, -0.6555],</span><br><span class="line">                         [-0.6697, -0.6839, -0.6839,  ..., -0.6128, -0.6412, -0.6412],</span><br><span class="line">                         ...,</span><br><span class="line">                         [-0.4564, -0.4848, -0.4564,  ..., -0.4279, -0.4422, -0.4422],</span><br><span class="line">                         [-0.4279, -0.4848, -0.4848,  ..., -0.3995, -0.4422, -0.3853],</span><br><span class="line">                         [-0.4279, -0.4422, -0.4706,  ..., -0.3711, -0.4137, -0.3568]]]]),</span><br><span class="line">                             &#x27;text_input&#x27;: [&#x27;[UNUSED_TOKEN_146]user</span><br><span class="line">               &#x27;</span><br><span class="line">                                            &#x27;&lt;ImageHere&gt;&lt;ImageHere&gt;图中是什么[UNUSED_TOKEN_145]</span><br><span class="line">               &#x27;</span><br><span class="line">                                            &#x27;[UNUSED_TOKEN_146]assistant</span><br><span class="line">               &#x27;</span><br><span class="line">                                            &#x27;这张图中包含了......[UNUSED_TOKEN_145]</span><br><span class="line">               &#x27;</span><br><span class="line">                                            &#x27;&lt;/s&gt;&#x27;]&#125;&#125;]</span><br></pre></td></tr></table></figure>
+
+<p>经过collator以后！！！！</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">instances: [&#123;&#x27;samples&#x27;: &#123;&#x27;data_type&#x27;: &#x27;multi&#x27;,</span><br><span class="line">                            &#x27;image&#x27;: tensor([[[[-0.9748, -0.9310, -0.9602,  ..., -0.9456, -0.9602, -0.9164],</span><br><span class="line">                        [-0.9893, -0.9456, -0.9456,  ..., -0.8580, -0.9310, -0.9456],</span><br><span class="line">                        [-0.9602, -0.9748, -0.9748,  ..., -0.9018, -0.9310, -0.9310],</span><br><span class="line">                        ...,</span><br><span class="line">                        [-0.7412, -0.7704, -0.7412,  ..., -0.7120, -0.7266, -0.7266],</span><br><span class="line">                        [-0.7120, -0.7704, -0.7704,  ..., -0.6828, -0.7266, -0.6682],</span><br><span class="line">                        [-0.7120, -0.7266, -0.7558,  ..., -0.6536, -0.6974, -0.6390]],</span><br><span class="line">              </span><br><span class="line">                       [[-0.9117, -0.8666, -0.8967,  ..., -0.8816, -0.8967, -0.8516],</span><br><span class="line">                        [-0.9267, -0.8816, -0.8816,  ..., -0.7916, -0.8666, -0.8816],</span><br><span class="line">                        [-0.8967, -0.9117, -0.9117,  ..., -0.8366, -0.8666, -0.8666],</span><br><span class="line">                        ...,</span><br><span class="line">                        [-0.6715, -0.7016, -0.6715,  ..., -0.6415, -0.6565, -0.6565],</span><br><span class="line">                        [-0.6415, -0.7016, -0.7016,  ..., -0.6115, -0.6565, -0.5965],</span><br><span class="line">                        [-0.6415, -0.6565, -0.6865,  ..., -0.5815, -0.6265, -0.5665]],</span><br><span class="line">              </span><br><span class="line">                       [[-0.6839, -0.6412, -0.6697,  ..., -0.6555, -0.6697, -0.6270],</span><br><span class="line">                        [-0.6981, -0.6555, -0.6555,  ..., -0.5701, -0.6412, -0.6555],</span><br><span class="line">                        [-0.6697, -0.6839, -0.6839,  ..., -0.6128, -0.6412, -0.6412],</span><br><span class="line">                        ...,</span><br><span class="line">                        [-0.4564, -0.4848, -0.4564,  ..., -0.4279, -0.4422, -0.4422],</span><br><span class="line">                        [-0.4279, -0.4848, -0.4848,  ..., -0.3995, -0.4422, -0.3853],</span><br><span class="line">                        [-0.4279, -0.4422, -0.4706,  ..., -0.3711, -0.4137, -0.3568]]],</span><br><span class="line">              </span><br><span class="line">              </span><br><span class="line">                      [[[-0.9748, -0.9310, -0.9602,  ..., -0.9456, -0.9602, -0.9164],</span><br><span class="line">                        [-0.9893, -0.9456, -0.9456,  ..., -0.8580, -0.9310, -0.9456],</span><br><span class="line">                        [-0.9602, -0.9748, -0.9748,  ..., -0.9018, -0.9310, -0.9310],</span><br><span class="line">                        ...,</span><br><span class="line">                        [-0.7412, -0.7704, -0.7412,  ..., -0.7120, -0.7266, -0.7266],</span><br><span class="line">                        [-0.7120, -0.7704, -0.7704,  ..., -0.6828, -0.7266, -0.6682],</span><br><span class="line">                        [-0.7120, -0.7266, -0.7558,  ..., -0.6536, -0.6974, -0.6390]],</span><br><span class="line">              </span><br><span class="line">                       [[-0.9117, -0.8666, -0.8967,  ..., -0.8816, -0.8967, -0.8516],</span><br><span class="line">                        [-0.9267, -0.8816, -0.8816,  ..., -0.7916, -0.8666, -0.8816],</span><br><span class="line">                        [-0.8967, -0.9117, -0.9117,  ..., -0.8366, -0.8666, -0.8666],</span><br><span class="line">                        ...,</span><br><span class="line">                        [-0.6715, -0.7016, -0.6715,  ..., -0.6415, -0.6565, -0.6565],</span><br><span class="line">                        [-0.6415, -0.7016, -0.7016,  ..., -0.6115, -0.6565, -0.5965],</span><br><span class="line">                        [-0.6415, -0.6565, -0.6865,  ..., -0.5815, -0.6265, -0.5665]],</span><br><span class="line">              </span><br><span class="line">                       [[-0.6839, -0.6412, -0.6697,  ..., -0.6555, -0.6697, -0.6270],</span><br><span class="line">                        [-0.6981, -0.6555, -0.6555,  ..., -0.5701, -0.6412, -0.6555],</span><br><span class="line">                        [-0.6697, -0.6839, -0.6839,  ..., -0.6128, -0.6412, -0.6412],</span><br><span class="line">                        ...,</span><br><span class="line">                        [-0.4564, -0.4848, -0.4564,  ..., -0.4279, -0.4422, -0.4422],</span><br><span class="line">                        [-0.4279, -0.4848, -0.4848,  ..., -0.3995, -0.4422, -0.3853],</span><br><span class="line">                        [-0.4279, -0.4422, -0.4706,  ..., -0.3711, -0.4137, -0.3568]]]]),</span><br><span class="line">                            &#x27;text_input&#x27;: [&#x27;[UNUSED_TOKEN_146]user</span><br><span class="line">              &#x27;</span><br><span class="line">                                           &#x27;&lt;ImageHere&gt;&lt;ImageHere&gt;图中是什么[UNUSED_TOKEN_145]</span><br><span class="line">              &#x27;</span><br><span class="line">                                           &#x27;[UNUSED_TOKEN_146]assistant</span><br><span class="line">              &#x27;</span><br><span class="line">                                           &#x27;这张图中包含了......[UNUSED_TOKEN_145]</span><br><span class="line">              &#x27;</span><br><span class="line">                                           &#x27;&lt;/s&gt;&#x27;]&#125;&#125;]</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">img2emb</span>(<span class="params">self, image</span>):</span><br><span class="line">        img_embeds = self.vision_proj(self.vit(image.to(self.device)))</span><br><span class="line">        ic(img_embeds.shape) <span class="comment">#   img_embeds.shape: torch.Size([2, 1225, 2048])</span></span><br><span class="line">        atts_img = torch.ones( </span><br><span class="line">            img_embeds.size()[:-<span class="number">1</span>], dtype=torch.long).to(img_embeds.device)</span><br><span class="line">        ic(atts_img.shape) <span class="comment">#    atts_img.shape: torch.Size([2, 1225])</span></span><br><span class="line">        img_target = torch.ones(</span><br><span class="line">            img_embeds.size()[:<span class="number">2</span>], dtype=torch.long).to(</span><br><span class="line">                img_embeds.device) * -<span class="number">100</span></span><br><span class="line">		<span class="comment">#  img_target.shape: torch.Size([2, 1225])</span></span><br><span class="line">        <span class="keyword">return</span> img_embeds, atts_img, img_target</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/01/21/git-443%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" rel="prev" title="git 443问题解决">
+                  <i class="fa fa-chevron-left"></i> git 443问题解决
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/02/09/r1/" rel="next" title="r1">
+                  r1 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Coder4nlp</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
