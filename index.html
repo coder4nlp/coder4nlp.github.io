@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -171,6 +171,243 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/12/30/JIT/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Coder4nlp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Coder4nlp's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Coder4nlp's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/12/30/JIT/" class="post-title-link" itemprop="url">“返璞归真”的JIT</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-12-30 12:05:41 / Modified: 12:49:17" itemprop="dateCreated datePublished" datetime="2025-12-30T12:05:41+08:00">2025-12-30</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>目前扩散模型通用的做法是：输入随机噪声，用预训练的VAE（变分自编码器）将它们压缩到一个“潜在空间”，然后运行扩散过程。在原始的高维像素上运行扩散通常被认为计算成本太高，或者在数学上不稳定。但MIT一篇由李Tianhong Li和Kaiming He合著的新论文表明，大家可能走错了方向。他们的论点非常简单：问题不在于像素的高维，问题是我们要求网络预测什么。</p>
+<blockquote>
+<p>流形假设 (The Manifold Assumption)</p>
+<ul>
+<li>自然数据流形： 世界上所有的真实照片，在巨大的像素空间（例如 $$256 \times 256 \times $$ 的维度）中，其实只分布在一个很小的、有规律的“薄片”上。比如，像素的随机组合有无数种，但能组成“猫”的组合极少。这个“薄片”就是流形 (Manifold)。</li>
+<li>噪声的无序性： 噪声是杂乱无章的，它充满了整个高维空间，并不存在于低维流形上。</li>
+<li>训练神经网络来预测干净图像（即$x$预测）与训练它来预测噪声或速度（即$ \epsilon&#x2F;v$λ 预测）有着根本的不同。</li>
+</ul>
+</blockquote>
+<p><img src="/2025/12/30/JIT/1.PNG"></p>
+<p>既然我们最终要的是清晰图像，而且清晰图像是有规律（流形）的，那为什么不让 Transformer 直接去预测图像本身呢？基于流形假设，作者认为应该<strong>预测清晰数据：模型的目标永远是那个“低维流形”。即使网络容量（参数量）看似不足，但因为它只需要寻找有规律的流形，所以它能更有效地处理高维像素。</strong></p>
+<h3 id="扩散模型"><a href="#扩散模型" class="headerlink" title="扩散模型"></a>扩散模型</h3><p>扩散模型的核心思想是通过预定义的过程，逐步像图片种注入噪声，然后训练一个神经网络来逆转这个过程。扩散模型的预测，可以在$x,v,\epsilon$​三种空间进行。在已知 $z_t$和$t$下，这三个未知数只要确定了其中<strong>任意一个</strong>，另外两个就能通过代数运算推导出来。</p>
+<ol>
+<li>$x$：最终要还原的清洁数据（终点）。</li>
+<li>$\epsilon$：随机噪声（起点）。</li>
+<li>$v$：当前移动的速度向量（方向）。</li>
+</ol>
+<p>三种预测方式在数学上是等价的，但实际上神经网络预测这三种目标的难度是不一样的。由于损失空间和神经网络输出空间可以不同，这样组合下来有9种选择。</p>
+<p>我们以基于流的范式来表述，即在$v$空间中，作为一个更简单的起点，然后讨论其他空间。</p>
+<p>基于线性插值来生成带噪声的样本</p>
+<p>$$z_t&#x3D;tx+(1-t) \epsilon$$</p>
+<p>$x$：真实数据。</p>
+<p>$\epsilon$$：纯噪声（来自标准正态分布 $$N(0, I)$）。</p>
+<p>$t$：时间轴，范围从 $[0, 1]$。</p>
+<ul>
+<li>当 $t&#x3D;0$ 时：$z_0 &#x3D; \epsilon$（完全是噪声）。</li>
+<li>当 $t&#x3D;1$ 时：$z_1 &#x3D; x$（完全是真实数据）。</li>
+</ul>
+<p><strong>速度定义</strong></p>
+<p>$$v &#x3D; x - \epsilon$$</p>
+<ul>
+<li><strong>物理意义</strong>：既然 $z_t$ 是随时间变化的位移，那么它的导数 $z_t’$ 就是移动的<strong>速度</strong>。</li>
+<li><strong>推导</strong>：对 $z_t &#x3D; t x + (1-t) \epsilon$ 关于 $t$ 求导，得到 $1 \cdot x + (-1) \cdot \epsilon$，即 $x - \epsilon$。</li>
+<li><strong>直观理解</strong>：速度 $v$ 就是从“起点（噪声）”指向“终点（数据）”的方向向量。</li>
+</ul>
+<p>在已知 $$z_t$$和$$t$$下，这三个未知数只要确定了其中<strong>任意一个</strong>，另外两个就能通过代数运算完美出来。</p>
+<p><img src="/2025/12/30/JIT/2.PNG"></p>
+<h2 id="小实验验证"><a href="#小实验验证" class="headerlink" title="小实验验证"></a>小实验验证</h2><p>为了验证神经网络应该直接预测清晰数据的论点。作者训练了一个具有 5 层的 ReLU 多层感知机（MLP），其隐藏单元维度为 256，并将其作为生成器。</p>
+<p>作者做了一个巧妙的对比实验：</p>
+<ul>
+<li>$$d&#x3D;$$：这是数据的“元素维度”（比如只有两个参数控制形状），方便可视化。</li>
+<li>$D$：这是模型“看到的维度”（通过一个随机矩阵 $P$ 把 2 维投影到 $D$ 维）。</li>
+<li><strong>实验设置</strong>：当 $D$ 变大（从 2 变到 512）时，看三种预测空间的效果。</li>
+</ul>
+<p>实验结果发现：</p>
+<ol>
+<li>$x-prediction$ (预测数据)：哪怕到了 $D&#x3D;512$，模型依然能精准还原数据。</li>
+<li>$v&#x2F; \epsilon$-prediction (预测速度&#x2F;噪声)：当 $D&#x3D;16$ 时就开始吃力，到了 $D&#x3D;512$ 直接<strong>彻底崩溃</strong>。</li>
+</ol>
+<p><img src="/2025/12/30/JIT/3.PNG"></p>
+<h2 id="Just-Image-Transformers"><a href="#Just-Image-Transformers" class="headerlink" title="Just Image Transformers"></a>Just Image Transformers</h2><p>进一步的，作者采用没有VAE、U-Net、没有重构损失，仅仅使用一个作用于原始像素的标准视觉Transformer来进行实验。</p>
+<p>架构非常简单：</p>
+<ul>
+<li>输入：将图像分成小块（例如，16 x 16像素）。</li>
+<li>处理：将展平的patch（每个768个尺寸）送入Transformer.。</li>
+<li>目标：直接预测干净像素（x-prediction）。</li>
+</ul>
+<p><img src="/2025/12/30/JIT/4.PNG"></p>
+<h3 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h3><p><img src="/2025/12/30/JIT/5.PNG"></p>
+<p><strong>这里需要特别注意的是</strong>，只在 Transformer 的 patch size 比较大 时，预测清晰图像才比预测速度更好。在patch size为4时，预测不同的空间差异并不大。最好的结果反而是预测速度空间，FID为3.46。</p>
+<p><img src="/2025/12/30/JIT/6.PNG"></p>
+<p>图 7（上）表明，尽管 $v$ 预测似乎是 $v$损失的“原生”参数化形式，但其损失值（约 25%）仍明显高于 $x$ 预测。这一对比表明，由于数据位于低维流形上，$x$ 预测任务本质上更简单。我们还观察到，未在此处展示的$ ϵ$ 预测的损失值约为 $x$ 预测的 3 倍，且不稳定，这或许可以解释其在表 2(a) 中的失败。图 7（下）比较了对应于两条训练曲线的去噪图像。对于 $x$ 预测，去噪图像即为 $xθ$ &#x3D; $netθ$；对于 $v$ 预测，去噪图像为 $xθ &#x3D; (1 - t)netθ + zt$，其中 $vθ &#x3D; netθ（见表 1(c)(1)）。图 7（上）中 v 预测的较高损失值在图 7（下）中表现为明显的伪影。请注意，图 7（下）中的伪影仅来自单次去噪步骤。在生成过程中，这种误差会在多步 ODE 求解器中累积，从而导致表 2(a) 中的灾难性失败。</p>
+<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><p>基于以上分析，作者最终采用的算法是预测$x-pred+v-loss$</p>
+<p>优化目标为</p>
+<p>$$\mathcal{L} &#x3D; \mathbb{E}_{t, \mathbf{x}, \epsilon} \left| \mathbf{v}_\theta(\mathbf{z}_t, t) - \mathbf{v} \right|^2, \ \text{where: } \mathbf{v}_\theta(\mathbf{z}_t, t) &#x3D; (\text{net}_\theta(\mathbf{z}_t, t) - \mathbf{z}_t) &#x2F; (1 - t).$$</p>
+<h3 id="训练过程"><a href="#训练过程" class="headerlink" title="训练过程"></a>训练过程</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Algorithm 1 Training step</span></span><br><span class="line"><span class="comment"># net(z, t): JiT network</span></span><br><span class="line"><span class="comment"># x: training batch</span></span><br><span class="line">t = sample t()</span><br><span class="line">e = randn like(x)</span><br><span class="line">z = t * x + (<span class="number">1</span> - t) * e</span><br><span class="line">v = (x - z) / (<span class="number">1</span> - t)</span><br><span class="line">x_pred = net(z, t)</span><br><span class="line">v_pred = (x_pred - z) / (<span class="number">1</span> - t)</span><br><span class="line">loss = l2 loss(v - v_pred)</span><br></pre></td></tr></table></figure>
+
+<h3 id="采样过程"><a href="#采样过程" class="headerlink" title="采样过程"></a>采样过程</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Algorithm 2 Sampling step (Euler)</span></span><br><span class="line"><span class="comment"># z: current samples at t</span></span><br><span class="line">x_pred = net(z, t)</span><br><span class="line">v_pred = (x_pred - z) / (<span class="number">1</span> - t)</span><br><span class="line">z_next = z + (t_next - t) * v_pre</span><br></pre></td></tr></table></figure>
+
+<h3 id="总结与思考"><a href="#总结与思考" class="headerlink" title="总结与思考"></a>总结与思考</h3><ul>
+<li>这种方法如果能scale成功，将意味着我们可能不再需要复杂的 Latent Space（潜空间）或 VAE 编码器，直接用最基础的 Transformer 就能在超高分辨率下生成高质量图像。</li>
+<li>在多模态理解上，主流的模型结构都需要一个视觉vit，可以类似的去掉Vit结构，直接像素输入。这个模型结构就变成了Fuyu，已经成功验证不要Vit的可行性</li>
+<li>如果多模态理解不要VIT，生成不要VAE，这样极简的结构显得更加优雅</li>
+<li>我已经想好统一多模态模型的论文题目了：<ul>
+<li>Just Pixel Transformer (JPT)</li>
+<li>Just Unified Transformer (JUT）</li>
+<li>Just Sequence Transformer (JST）</li>
+<li>Native Pixel Transformer (NPT)</li>
+<li>OmniPatch</li>
+</ul>
+</li>
+<li>直接像素的优势：<ul>
+<li>极简的系统设计：由于没有 VAE 和 ViT，不需要处理复杂的感知损失（Perceptual Loss）或对抗损失（GAN Loss）</li>
+<li>避免细节丢失：传统的 ViT 往往会丢失图像中的细节（比如文字、细小线条）。直接输入像素序列可以让 Transformer 自行学习如何捕捉空间关系，理论上能保留 100% 的原始视觉信息。</li>
+<li>端到端的处理：整个模型（视觉 + 文本）在同一个梯度链条下训练，没有“冻结的编码器”带来的限制，视觉理解和逻辑推理能更好地融合。</li>
+</ul>
+</li>
+<li>直接像素可能的问题：<ul>
+<li>序列长度爆炸（计算复杂度）</li>
+<li>确实先验知识：ViT 或 VAE 具有处理图像的先验知识（如局部相关性）。纯 Transformer 需要消耗更多的数据才能学到“相邻的像素构成了物体”这种常识。</li>
+<li>训练难度：直接从像素学习高层语义（如“猫”的概念）比从预训练好的 ViT 特征中学习要难得多。</li>
+</ul>
+</li>
+<li>可能缓解的方式：<ul>
+<li>通过patch merge来降低序列长度</li>
+<li>了处理高分辨率，可以引入局部窗口注意力（Local Attention）或线性注意力</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/12/28/Z-Image/test/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Coder4nlp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Coder4nlp's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Coder4nlp's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/12/28/Z-Image/test/" class="post-title-link" itemprop="url">Untitled</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-12-28 22:18:42 / Modified: 22:46:41" itemprop="dateCreated datePublished" datetime="2025-12-28T22:18:42+08:00">2025-12-28</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line">    %% 定义节点样式</span><br><span class="line">    classDef startEnd fill:#e1f5fe,stroke:#0288d1,stroke-width:2px,rx:10,ry:10;</span><br><span class="line">    classDef brain fill:#f3e5f5,stroke:#8e24aa,stroke-width:3px,rx:5,ry:5;</span><br><span class="line">    classDef tools fill:#fff3e0,stroke:#ef6c00,stroke-width:1px,stroke-dasharray: 5 5;</span><br><span class="line">    classDef process fill:#ffffff,stroke:#333,stroke-width:1px;</span><br><span class="line"></span><br><span class="line">    %% 主要流程节点</span><br><span class="line">    Input([用户输入帖子&lt;br&gt;User Post]):::startEnd --&gt; Agent[智能体&lt;br&gt;Agent (LLM Orchestrator)]:::brain;</span><br><span class="line"></span><br><span class="line">    %% 工具子图区域</span><br><span class="line">    subgraph ToolSet [工具调用层 Tool Layer]</span><br><span class="line">        direction LR</span><br><span class="line">        Retrieval[检索工具&lt;br&gt;Retrieval Tool&lt;br&gt;(搜索梗/模板/上下文)]:::process</span><br><span class="line">        T2I[文生图工具&lt;br&gt;T2I Gen Tool&lt;br&gt;(图像生成模型)]:::process</span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">    %% Agent与工具的交互循环</span><br><span class="line">    Agent -- &quot;1. 分析意图，查询背景/模板&quot; --&gt; Retrieval;</span><br><span class="line">    Retrieval -- &quot;2. 返回相关上下文数据&quot; --&gt; Agent;</span><br><span class="line"></span><br><span class="line">    Agent -- &quot;3. 构建详细图像Prompt &amp; 文字内容&quot; --&gt; T2I;</span><br><span class="line">    T2I -- &quot;4. 生成图像并返回&quot; --&gt; Agent;</span><br><span class="line"></span><br><span class="line">    %% 最终输出</span><br><span class="line">    Agent -- &quot;5. 最终合成与审核&quot; --&gt; Output([输出表情包&lt;br&gt;Meme Output]):::startEnd;</span><br><span class="line"></span><br><span class="line">    %% 添加注释说明</span><br><span class="line">    note_agent[Agent核心职能:&lt;br&gt;1. 理解用户情绪与梗&lt;br&gt;2. 决定是否需要检索&lt;br&gt;3. 编写绘画提示词&lt;br&gt;4. 决定表情包文字]</span><br><span class="line">    note_agent -.- Agent</span><br><span class="line"></span><br><span class="line">    %% 连接线样式调整</span><br><span class="line">    linkStyle 1,2,3,4 stroke-width:2px,fill:none,stroke:blue;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -862,164 +1099,6 @@
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/04/23/Python%E4%B8%AD%E7%9A%84Iterables-vs-Iterators/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Coder4nlp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Coder4nlp's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Coder4nlp's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/04/23/Python%E4%B8%AD%E7%9A%84Iterables-vs-Iterators/" class="post-title-link" itemprop="url">Python中的Iterables vs Iterators</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2023-04-23 22:05:53 / Modified: 22:17:51" itemprop="dateCreated datePublished" datetime="2023-04-23T22:05:53+08:00">2023-04-23</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Python中的Iterables-vs-Iterators"><a href="#Python中的Iterables-vs-Iterators" class="headerlink" title="Python中的Iterables vs Iterators"></a>Python中的Iterables vs Iterators</h1><p>术语<code>iterable</code>和<code>iterator</code>经常(错误地)互换使用，以描述支持迭代的对象，即允许迭代其元素的对象。实际上，<code>Python</code>中的迭代器(<code>iterators</code>)和可迭代对象(<code>iterables</code>)是两个截然不同的概念，通常会引起混淆，尤其是对新手而言。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/04/23/Python%E4%B8%AD%E7%9A%84Iterables-vs-Iterators/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/04/08/%E6%BB%A1%E6%B1%9F%E7%BA%A2%C2%B7%E6%9A%AE%E9%9B%A8%E5%88%9D%E6%94%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Coder4nlp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Coder4nlp's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Coder4nlp's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/04/08/%E6%BB%A1%E6%B1%9F%E7%BA%A2%C2%B7%E6%9A%AE%E9%9B%A8%E5%88%9D%E6%94%B6/" class="post-title-link" itemprop="url">满江红·暮雨初收</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-04-08 22:38:21" itemprop="dateCreated datePublished" datetime="2023-04-08T22:38:21+08:00">2023-04-08</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-04-23 21:58:31" itemprop="dateModified" datetime="2023-04-23T21:58:31+08:00">2023-04-23</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote class="song">
-<p>
-            <tt>满江红·暮雨初收</tt><br>
-            <at>〔宋代〕 柳永</at><br>暮雨初收，长川静、征帆夜落。<br>临岛屿、蓼烟疏淡，苇风萧索。<br>几许渔人飞短艇，尽载灯火归村落。<br>遣行客、当此念回程，伤漂泊。<br>桐江好，烟漠漠。<br>波似染，山如削。<br>绕严陵滩畔，鹭飞鱼跃。<br>游宦区区成底事，平生况有云泉约。<br>归去来、一曲仲宣吟，从军乐。<br>
- </p>
-</blockquote>
-
       
     </div>
 
